@@ -1,0 +1,39 @@
+// @ts-ignore
+import MenuIcon1 from "@/assets/svg/menu-icon-1.svg";
+// @ts-ignore
+import MenuIcon2 from "@/assets/svg/menu-icon-2.svg";
+// @ts-ignore
+import MenuIcon3 from "@/assets/svg/menu-icon-3.svg";
+// @ts-ignore
+import MenuIcon4 from "@/assets/svg/menu-icon-4.svg";
+// @ts-ignore
+import MenuIcon5 from "@/assets/svg/menu-icon-5.svg";
+import { Link, } from "react-router-dom";
+
+export const menu = [
+  {
+    key: "1",
+    icon: <img src={MenuIcon1} width={24} height={24} alt="Asosiy" />,
+    label: <Link to="/">Asosiy</Link>,
+  },
+  {
+    key: "2",
+    icon: <img src={MenuIcon2} width={24} height={24} alt="O’quvchilar" />,
+    label: <Link to="/students">O’quvchilar</Link>,
+  },
+  {
+    key: "3",
+    icon: <img src={MenuIcon3} width={24} height={24} alt="O’qituvchilar" />,
+    label: <Link to="/teachers">O’qituvchilar</Link>,
+  },
+  {
+    key: "4",
+    icon: <img src={MenuIcon4} width={24} height={24} alt="Guruhlar" />,
+    label: <Link to="/groups">Guruhlar</Link>,
+  },
+  {
+    key: "5",
+    icon: <img src={MenuIcon5} width={24} height={24} alt="Hisobotlar" />,
+    label: <Link to="/reports">Hisobotlar</Link>,
+  },
+];

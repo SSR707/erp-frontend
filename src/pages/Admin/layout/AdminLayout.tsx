@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, Input, Layout, Menu, Row, theme } from "antd";
+// @ts-ignore
 import MainLogo from "@/assets/svg/mian.logo.svg";
+// @ts-ignore
 import SearchIcon from "@/assets/svg/search.icon.svg";
-import MenuIcon1 from "@/assets/svg/menu-icon-1.svg";
-import MenuIcon2 from "@/assets/svg/menu-icon-2.svg";
-import MenuIcon3 from "@/assets/svg/menu-icon-3.svg";
-import MenuIcon4 from "@/assets/svg/menu-icon-4.svg";
-import MenuIcon5 from "@/assets/svg/menu-icon-5.svg";
-import { Link, Outlet } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
+import { menu } from "./components/layout.menu";
 const { Header, Sider, Content } = Layout;
 
 const AdminLayout = () => {
@@ -35,46 +33,7 @@ const AdminLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
-          items={[
-            {
-              key: "1",
-              icon: <img src={MenuIcon1} width={24} height={24} alt="Asosiy" />,
-              label: <Link to="/">Asosiy</Link>,
-            },
-            {
-              key: "2",
-              icon: (
-                <img src={MenuIcon2} width={24} height={24} alt="O’quvchilar" />
-              ),
-              label: <Link to="/students">O’quvchilar</Link>,
-            },
-            {
-              key: "3",
-              icon: (
-                <img
-                  src={MenuIcon3}
-                  width={24}
-                  height={24}
-                  alt="O’qituvchilar"
-                />
-              ),
-              label: <Link to="/teachers">O’qituvchilar</Link>,
-            },
-            {
-              key: "4",
-              icon: (
-                <img src={MenuIcon4} width={24} height={24} alt="Guruhlar" />
-              ),
-              label: <Link to="/groups">Guruhlar</Link>,
-            },
-            {
-              key: "5",
-              icon: (
-                <img src={MenuIcon5} width={24} height={24} alt="Hisobotlar" />
-              ),
-              label: <Link to="/reports">Hisobotlar</Link>,
-            },
-          ]}
+          items={menu}
         />
       </Sider>
       <Layout>
