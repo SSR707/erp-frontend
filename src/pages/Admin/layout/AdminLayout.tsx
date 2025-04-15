@@ -1,0 +1,132 @@
+import { useState } from "react";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Button, Input, Layout, Menu, Row, theme } from "antd";
+import MainLogo from "@/assets/svg/mian.logo.svg";
+import SearchIcon from "@/assets/svg/search.icon.svg";
+import MenuIcon1 from "@/assets/svg/menu-icon-1.svg";
+import MenuIcon2 from "@/assets/svg/menu-icon-2.svg";
+import MenuIcon3 from "@/assets/svg/menu-icon-3.svg";
+import MenuIcon4 from "@/assets/svg/menu-icon-4.svg";
+import MenuIcon5 from "@/assets/svg/menu-icon-5.svg";
+import { Link, Outlet } from "react-router-dom";
+const { Header, Sider, Content } = Layout;
+
+const AdminLayout = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+  return (
+    <Layout style={{ minHeight: "100vh" }}>
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        style={{ backgroundColor: "var( --oq-rang-1)" }}
+      >
+        <div
+          className="demo-logo-vertical"
+          style={{ textAlign: "center", padding: "16px" }}
+        >
+          <img src={MainLogo} alt="Logo" style={{ width: "80%" }} />
+        </div>
+        <Menu
+          style={{ backgroundColor: "var( --oq-rang-1)" }}
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={["1"]}
+          items={[
+            {
+              key: "1",
+              icon: <img src={MenuIcon1} width={24} height={24} alt="Asosiy" />,
+              label: <Link to="/">Asosiy</Link>,
+            },
+            {
+              key: "2",
+              icon: (
+                <img src={MenuIcon2} width={24} height={24} alt="O’quvchilar" />
+              ),
+              label: <Link to="/students">O’quvchilar</Link>,
+            },
+            {
+              key: "3",
+              icon: (
+                <img
+                  src={MenuIcon3}
+                  width={24}
+                  height={24}
+                  alt="O’qituvchilar"
+                />
+              ),
+              label: <Link to="/teachers">O’qituvchilar</Link>,
+            },
+            {
+              key: "4",
+              icon: (
+                <img src={MenuIcon4} width={24} height={24} alt="Guruhlar" />
+              ),
+              label: <Link to="/groups">Guruhlar</Link>,
+            },
+            {
+              key: "5",
+              icon: (
+                <img src={MenuIcon5} width={24} height={24} alt="Hisobotlar" />
+              ),
+              label: <Link to="/reports">Hisobotlar</Link>,
+            },
+          ]}
+        />
+      </Sider>
+      <Layout>
+        <Header style={{ padding: 0, background: colorBgContainer }}>
+          <Row
+            justify={"space-between"}
+            style={{ width: "full", alignItems: "center" }}
+          >
+            <Row style={{ width: "100%", alignItems: "center", gap: "10px" }}>
+              {" "}
+              <Button
+                type="text"
+                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                onClick={() => setCollapsed(!collapsed)}
+                style={{
+                  fontSize: "16px",
+                  width: 64,
+                  height: 64,
+                }}
+              />
+              <Input
+                style={{
+                  maxWidth: "210px",
+                  padding: " 6px 60px 6px 15px",
+                  border: "1px solid var(--qidiruv-tizimi-1)",
+                  borderRadius: "4px",
+                  boxShadow: "2px 2px 2px 0 rgba(0, 0, 0, 0.1)",
+                  background: "var(--stroka-rang-2)",
+                  fontFamily: "var(--font-family)",
+                  fontWeight: 900,
+                  fontSize: "16px",
+                }}
+                placeholder="Qidiruv tizimi..."
+                prefix={<img width={24} height={24} src={SearchIcon} />}
+              />
+            </Row>
+          </Row>
+        </Header>
+        <Content
+          style={{
+            margin: "24px 16px",
+            padding: 24,
+            minHeight: 280,
+            background: colorBgContainer,
+            borderRadius: borderRadiusLG,
+          }}
+        >
+          <Outlet />
+        </Content>
+      </Layout>
+    </Layout>
+  );
+};
+
+export default AdminLayout;
