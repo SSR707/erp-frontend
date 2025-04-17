@@ -8,7 +8,11 @@ import MenuIcon3 from "@/assets/svg/menu-icon-3.svg";
 import MenuIcon4 from "@/assets/svg/menu-icon-4.svg";
 // @ts-ignore
 import MenuIcon5 from "@/assets/svg/menu-icon-5.svg";
-import { Link, } from "react-router-dom";
+// @ts-ignore
+import MenuIcon6 from "@/assets/svg/menu-icon-6.svg";
+// @ts-ignore
+import MenuIcon7 from "@/assets/svg/menu-icon-7.svg";
+import { Link } from "react-router-dom";
 
 export const menu = [
   {
@@ -35,5 +39,18 @@ export const menu = [
     key: "5",
     icon: <img src={MenuIcon5} width={24} height={24} alt="Hisobotlar" />,
     label: <Link to="/reports">Hisobotlar</Link>,
+  },
+];
+
+export const menuBootm = [
+  {
+    key: "6",
+    icon: <img src={MenuIcon6} width={24} height={24} alt="Sozlamalar" />,
+    label: <Link to="/settings">Sozlamalar</Link>,
+  },
+  {
+    key: "7",
+    icon: <img src={MenuIcon7} width={24} height={24} alt="Chiqish" />,
+    label: <Link to="/settings">Chiqish</Link>,
   },
 ];

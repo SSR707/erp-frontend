@@ -8,6 +8,7 @@ import Students from "@/pages/Admin/students/students";
 import Teachers from "@/pages/Admin/teachers/teachers";
 import Groups from "@/pages/Admin/groups/groups";
 import Reports from "@/pages/Admin/reports/reports";
+import Settings from "@/pages/Admin/settings/settings";
 
 export const routes: IRoutes[] = [
   {
@@ -40,6 +41,10 @@ export const routes: IRoutes[] = [
         {
           path: "/reports",
           element: <Reports />,
+        },
+        {
+          path: "/settings",
+          element: <Settings />,
         },
       ],
     },
