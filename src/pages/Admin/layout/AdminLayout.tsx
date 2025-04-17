@@ -15,7 +15,7 @@ const { Header, Sider, Content } = Layout;
 const AdminLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { colorBgContainer },
   } = theme.useToken();
   return (
     <Layout style={{ minHeight: "100vh" }}>
