@@ -8,7 +8,7 @@ export interface IUserCard {
   birthDate: string;
   phoneNumber: string;
   address: string;
-  gender: string
+  gender: string;
 }
 
 export const UserCard = ({
@@ -30,7 +30,7 @@ export const UserCard = ({
         padding: "15px",
       }}
     >
-      <Row style={{ alignItems: "center", gap: "30px" }}>
+      <Row style={{ alignItems: "center", gap: "50px" }}>
         <Row style={{ alignItems: "center", gap: "15px" }}>
           {" "}
           <Title
@@ -61,7 +61,7 @@ export const UserCard = ({
             {fullname}
           </Title>{" "}
         </Row>
-        <Row style={{ alignItems: "center", gap: "35px" }}>
+        <Row style={{ alignItems: "center", gap: "45px" }}>
           <Title
             level={2}
             style={{
@@ -74,9 +74,11 @@ export const UserCard = ({
           >
             {birthDate}
           </Title>
-          <Tag color={gender === "male" ? "green" : "red"}>
-            {gender === "male" ? "O’g’il bola" : "Qiz bola"}
-          </Tag>
+          <Row style={{ width: "69px" }}>
+            <Tag color={gender === "male" ? "green" : "red"}>
+              {gender === "male" ? "O’g’il bola" : "Qiz bola"}
+            </Tag>
+          </Row>
           <Title
             level={2}
             style={{

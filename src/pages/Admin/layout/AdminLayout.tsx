@@ -18,7 +18,7 @@ const AdminLayout = () => {
     token: { colorBgContainer },
   } = theme.useToken();
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: "100vh", overflow: "hidden" }}>
       <Sider
         trigger={null}
         collapsible
@@ -146,7 +146,13 @@ const AdminLayout = () => {
             </Row>
           </Row>
         </Header>
-        <Content>
+        <Content
+          style={{
+            backgroundColor: "var(--stroka-rang-2)",
+            overflowY: "auto",
+            height: "calc(100vh - 80px)",
+          }}
+        >
           <Outlet />
         </Content>
       </Layout>
