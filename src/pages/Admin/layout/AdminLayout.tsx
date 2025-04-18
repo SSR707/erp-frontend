@@ -147,6 +147,7 @@ const AdminLayout = () => {
           </Row>
         </Header>
         <Content
+          className="custom-scroll"
           style={{
             backgroundColor: "var(--stroka-rang-2)",
             overflowY: "auto",

@@ -73,6 +73,7 @@ import CategoryMenuIcon from "@/assets/svg/menu.category.icon.svg";
 import { UserCard } from "./components/UserCard";
 import { StatistikaCard } from "./components/StatistikaCard";
 import { TodayArrivedStudentsCard } from "./components/TodayArrivedStudentsCard";
+import DonutChart from "./components/StatistikaComponent";
 
 const items: MenuProps["items"] = [
   {
@@ -304,61 +305,42 @@ const Dashboard = () => {
             <StatistikaCard />
           </Col>
         </Row>
-        <Row>
-          <Col
-            style={{
-              background: "var(--oq-rang-1)",
-              border: "1px solid var(--qidiruv-tizimi-1)",
-              borderRadius: "4px",
-              width: "37%",
-            }}
-          >
-            <Row
+        <Row style={{ width: "full", gap: "25px" }}>
+          <Row style={{ gap: "20px", width: "76%" }}>
+            <Col
               style={{
-                padding: "20px 20px 10px 20px",
-                borderBottom: "2px solid  var(--qidiruv-tizimi-1)",
-                justifyContent: "space-between",
+                background: "var(--oq-rang-1)",
+                border: "1px solid var(--qidiruv-tizimi-1)",
+                borderRadius: "4px",
+                width: "49%",
               }}
             >
-              <Title
-                level={2}
+              <Row
                 style={{
-                  fontWeight: 400,
-                  fontSize: "26px",
-                  color: "var(--matn-rang-1)",
-                  margin: 0,
-                  maxWidth: "160px",
-                  fontFamily: "var(--font-family)",
+                  padding: "20px 20px 10px 20px",
+                  borderBottom: "2px solid  var(--qidiruv-tizimi-1)",
+                  justifyContent: "space-between",
                 }}
               >
-                {" "}
-                Bugun kelgan bolalar soni:
-              </Title>
-              <Col>
-                <Row
+                <Title
+                  level={2}
                   style={{
-                    alignItems: "center",
-                    gap: "5px",
+                    fontWeight: 400,
+                    fontSize: "26px",
+                    color: "var(--matn-rang-1)",
+                    margin: 0,
+                    maxWidth: "160px",
+                    fontFamily: "var(--font-family)",
                   }}
                 >
-                  <Title
-                    level={2}
-                    style={{
-                      fontWeight: 500,
-                      fontSize: "16px",
-                      color: "var(--matn-rang-1)",
-                      margin: 0,
-                      fontFamily: "var(--font-family)",
-                    }}
-                  >
-                    Sana:
-                  </Title>
+                  {" "}
+                  Bugun kelgan bolalar soni:
+                </Title>
+                <Col>
                   <Row
                     style={{
-                      padding: "6px 20px",
-                      border: "1px solid var(--qidiruv-tizimi-1)",
-                      borderRadius: "4px",
-                      background: "var(--stroka-rang-2)",
+                      alignItems: "center",
+                      gap: "5px",
                     }}
                   >
                     <Title
@@ -371,51 +353,172 @@ const Dashboard = () => {
                         fontFamily: "var(--font-family)",
                       }}
                     >
-                      11.05.2024
+                      Sana:
+                    </Title>
+                    <Row
+                      style={{
+                        padding: "6px 20px",
+                        border: "1px solid var(--qidiruv-tizimi-1)",
+                        borderRadius: "4px",
+                        background: "var(--stroka-rang-2)",
+                      }}
+                    >
+                      <Title
+                        level={2}
+                        style={{
+                          fontWeight: 500,
+                          fontSize: "16px",
+                          color: "var(--matn-rang-1)",
+                          margin: 0,
+                          fontFamily: "var(--font-family)",
+                        }}
+                      >
+                        11.05.2024
+                      </Title>
+                    </Row>
+                  </Row>
+                  <Title
+                    level={2}
+                    style={{
+                      fontWeight: 500,
+                      fontSize: "22px",
+                      color: "var(--breand-rang-1)",
+                      margin: 0,
+                      fontFamily: "var(--font-family)",
+                    }}
+                  >
+                    100 ta
+                  </Title>
+                </Col>
+              </Row>
+              <Col
+                style={{
+                  padding: "20px",
+                }}
+              >
+                <Row style={{ gap: "233px", marginBottom: "10px" }}>
+                  <Row style={{ gap: "22px" }}>
+                    <Title
+                      level={4}
+                      style={{
+                        fontWeight: 500,
+                        fontSize: "16px",
+                        color: "var(--filter-matn-rang-1)",
+                        fontFamily: "var(--font-family)",
+                        margin: 0,
+                      }}
+                    >
+                      {" "}
+                      #
+                    </Title>
+                    <Title
+                      level={4}
+                      style={{
+                        fontWeight: 500,
+                        fontSize: "16px",
+                        color: "var(--filter-matn-rang-1)",
+                        fontFamily: "var(--font-family)",
+                        margin: 0,
+                      }}
+                    >
+                      {" "}
+                      Bolalar F.I.O
                     </Title>
                   </Row>
+                  <Title
+                    level={4}
+                    style={{
+                      fontWeight: 500,
+                      fontSize: "16px",
+                      color: "var(--filter-matn-rang-1)",
+                      fontFamily: "var(--font-family)",
+                      margin: 0,
+                    }}
+                  >
+                    {" "}
+                    Jinsi
+                  </Title>
                 </Row>
+                <Col
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "20px",
+                    height: "190px",
+                    overflowY: "auto",
+                    overflowX: "hidden",
+                    paddingRight: "10px",
+                  }}
+                  className="custom-scroll"
+                >
+                  {dataSource.map((items, index) => (
+                    <TodayArrivedStudentsCard
+                      id={index + 1}
+                      avatar={items.avatar}
+                      fullname={items.name}
+                      gender={items.gender}
+                    />
+                  ))}
+                </Col>
+              </Col>
+            </Col>
+            <Col
+              style={{
+                background: "var(--oq-rang-1)",
+                border: "1px solid var(--qidiruv-tizimi-1)",
+                borderRadius: "4px",
+                width: "48.9%",
+              }}
+            >
+              <Row
+                style={{
+                  padding: "20px 20px 10px 20px",
+                  borderBottom: "2px solid  var(--qidiruv-tizimi-1)",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Title
+                  level={2}
+                  style={{
+                    fontWeight: 400,
+                    fontSize: "26px",
+                    color: "var(--matn-rang-1)",
+                    margin: 0,
+                    maxWidth: "160px",
+                    fontFamily: "var(--font-family)",
+                  }}
+                >
+                  {" "}
+                  Bugun kelgan bolalar soni:
+                </Title>
                 <Title
                   level={2}
                   style={{
                     fontWeight: 500,
-                    fontSize: "22px",
+                    fontSize: "50px",
                     color: "var(--breand-rang-1)",
                     margin: 0,
                     fontFamily: "var(--font-family)",
                   }}
                 >
-                  100 ta
+                  100%
                 </Title>
-              </Col>
-            </Row>
-            <Col
-              style={{
-                padding: "20px",
-              }}
-            >
-              <Col
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "20px",
-                  height: "190px",
-                  overflowY: "auto",
-                  overflowX: "hidden",
-                  paddingRight: "10px",
-                }}
-                className="custom-scroll"
-              >
-                {dataSource.map((items, index) => (
-                  <TodayArrivedStudentsCard
-                    id={index + 1}
-                    avatar={items.avatar}
-                    fullname={items.name}
-                    gender={items.gender}
-                  />
-                ))}
+              </Row>
+              <Col style={{ padding: " 40px 35px 0px 40px" }}>
+                <DonutChart />
               </Col>
             </Col>
+          </Row>
+          <Col
+            style={{
+              width: "22%",
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
+            }}
+          >
+            <StatistikaCard />
           </Col>
         </Row>
       </Col>

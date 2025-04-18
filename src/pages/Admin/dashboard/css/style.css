@@ -1,6 +1,6 @@
 .custom-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #bfbfbf transparent;
+  scrollbar-color: var(--breand-rang-1) transparent;
 }
 
 .custom-scroll::-webkit-scrollbar {
@@ -12,6 +12,6 @@
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
-  background-color: #bfbfbf;
+  background-color: var(--breand-rang-1);
   border-radius: 4px;
 }
