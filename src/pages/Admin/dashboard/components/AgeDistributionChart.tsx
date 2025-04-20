@@ -10,8 +10,10 @@ const colors = [
   "#E74C3C", // 5-6
   "#AED6F1", // 6-7
 ];
-
-const data = [
+interface DonutChartProps {
+  ageStats: Record<string, number>;
+}
+const faykData = [
   { label: "0-1", value: 40 },
   { label: "1-2", value: 24 },
   { label: "2-3", value: 12 },
@@ -21,8 +23,17 @@ const data = [
   { label: "6-7", value: 2 },
 ];
 
-const DonutChart: FC = () => {
+const DonutChart: FC<DonutChartProps> = ({ ageStats }) => {
+    let data = Object.entries(ageStats).map(([label, value]) => ({
+      label,
+      value,
+    }));
+  // let data = faykData;
   const total = data.reduce((acc, cur) => acc + cur.value, 0);
+
+  if (total === 0) {
+    data = faykData;
+  }
 
   return (
     <Row style={{ alignItems: "center" }}>

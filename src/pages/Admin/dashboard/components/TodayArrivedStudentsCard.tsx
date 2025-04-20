@@ -29,7 +29,7 @@ export const TodayArrivedStudentsCard = ({
         >
           {id}
         </Title>
-        <Row style={{gap: '10px'}}>
+        <Row style={{ gap: "10px", alignItems: "center" }}>
           <Avatar src={avatar} />
           <Title
             level={2}
@@ -47,9 +47,9 @@ export const TodayArrivedStudentsCard = ({
           </Title>{" "}
         </Row>
       </Row>
-        <Tag color={gender === "male" ? "green" : "red"}>
-          {gender === "male" ? "O’g’il bola" : "Qiz bola"}
-        </Tag>
+      <Tag color={gender === "male" ? "green" : "red"}>
+        {gender === "male" ? "O’g’il bola" : "Qiz bola"}
+      </Tag>
     </Row>
   );
 };

@@ -1,5 +1,7 @@
+import { formatPhoneNumber } from "@/utils/format/format.phone.nuber";
 import { Avatar, Row, Tag } from "antd";
 import Title from "antd/es/typography/Title";
+import dayjs from "dayjs";
 
 export interface IUserCard {
   id: number;
@@ -20,6 +22,8 @@ export const UserCard = ({
   phoneNumber,
   address,
 }: IUserCard) => {
+  const phone = formatPhoneNumber(phoneNumber);
+
   return (
     <Row
       style={{
@@ -72,7 +76,7 @@ export const UserCard = ({
               margin: 0,
             }}
           >
-            {birthDate}
+            {dayjs(birthDate).format("DD-MM-YYYY")}
           </Title>
           <Row style={{ width: "69px" }}>
             <Tag color={gender === "male" ? "green" : "red"}>
@@ -89,7 +93,7 @@ export const UserCard = ({
               margin: 0,
             }}
           >
-            {phoneNumber}
+            {phone}
           </Title>
           <Title
             level={2}

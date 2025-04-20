@@ -1,79 +1,21 @@
-import { Button, Col, Dropdown, MenuProps, Row } from "antd";
+import { Button, Col, Dropdown, MenuProps, Row, Spin } from "antd";
 import Title from "antd/es/typography/Title";
 import { useState } from "react";
+// @ts-ignore
+import IncomeIcon from "@/assets/svg/Income.icon.svg";
+// @ts-ignore
+import OutecomeIcon from "@/assets/svg/outcome.icon.svg";
+// @ts-ignore
+import StudentCountIcon from "@/assets/svg/student.count.icon.svg";
 import "./css/style.css";
-const dataSource = [
-  {
-    key: "1",
-    name: "Sultonov Shokirjon Tursinjon o’g’li",
-    dob: "15.05.1996",
-    gender: "male",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-  },
-  {
-    key: "2",
-    name: "Nodirova Shodiya Tursinjon qizi",
-    dob: "15.05.1996",
-    gender: "female",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/women/1.jpg",
-  },
-  {
-    key: "3",
-    name: "Sultonov Shokirjon Tursinjon o’g’li",
-    dob: "15.05.1996",
-    gender: "male",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-  },
-  {
-    key: "3",
-    name: "Sultonov Shokirjon Tursinjon o’g’li",
-    dob: "15.05.1996",
-    gender: "male",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-  },
-  {
-    key: "3",
-    name: "Sultonov Shokirjon Tursinjon o’g’li",
-    dob: "15.05.1996",
-    gender: "male",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-  },
-  {
-    key: "3",
-    name: "Sultonov Shokirjon Tursinjon o’g’li",
-    dob: "15.05.1996",
-    gender: "male",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-  },
-  {
-    key: "3",
-    name: "Sultonov Shokirjon Tursinjon o’g’li",
-    dob: "15.05.1996",
-    gender: "male",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-  },
-];
-
 // @ts-ignore
 import CategoryMenuIcon from "@/assets/svg/menu.category.icon.svg";
 import { UserCard } from "./components/UserCard";
 import { StatistikaCard } from "./components/StatistikaCard";
-import { TodayArrivedStudentsCard } from "./components/TodayArrivedStudentsCard";
-import DonutChart from "./components/StatistikaComponent";
+import { useGetDashboard } from "./service/query/useGetDashboard";
+import TodayArrivedStudentsComponents from "./components/TodayArrivedStudentsComponents";
+import AgeDistributionComponents from "./components/AgeDistributionComponents";
+
 
 const items: MenuProps["items"] = [
   {
@@ -91,7 +33,18 @@ const items: MenuProps["items"] = [
 ];
 
 const Dashboard = () => {
-  const [category, setCategory] = useState("O’qituvchilar");
+  const [category, setCategory] = useState("Hamma");
+
+  const { data, isLoading } = useGetDashboard(
+    "",
+    category === "Hamma"
+      ? ""
+      : category === "O’qituvchilar"
+      ? "TEACHER"
+      : category === "O’quvchilar"
+      ? "STUDENT"
+      : ""
+  );
   return (
     <>
       <Col
@@ -158,7 +111,7 @@ const Dashboard = () => {
                     color: "var(--breand-rang-1)",
                   }}
                 >
-                  40 ta
+                  {data?.data?.studentCount}
                 </span>
               </Title>
 
@@ -173,7 +126,7 @@ const Dashboard = () => {
                   </Button>
                 </Dropdown>
 
-                {["O’qituvchilar", "Guruhlar", "Menegerlar"].map(
+                {["Hamma", "O’qituvchilar", "O’quvchilar"].map(
                   (item, index) => (
                     <Button
                       key={index}
@@ -267,30 +220,45 @@ const Dashboard = () => {
                   </Row>
                 </Row>
               </Row>
-              <Col
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "15px",
-                  height: "225px",
-                  overflowY: "auto",
-                  overflowX: "hidden",
-                  paddingRight: "10px",
-                }}
-                className="custom-scroll"
-              >
-                {dataSource.map((items, index) => (
-                  <UserCard
-                    id={index + 1}
-                    avatar={items.avatar}
-                    fullname={items.name}
-                    birthDate={items.dob}
-                    gender={items.gender}
-                    phoneNumber={items.contact}
-                    address={items.address}
-                  />
-                ))}
-              </Col>
+              {isLoading ? (
+                <Col
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "225px",
+                  }}
+                >
+                  <Spin />
+                </Col>
+              ) : (
+                <Col
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "15px",
+                    height: "225px",
+                    overflowY: "auto",
+                    overflowX: "hidden",
+                    paddingRight: "10px",
+                  }}
+                  className="custom-scroll"
+                >
+                  {data?.data?.users?.map((items, index) => (
+                    <UserCard
+                      key={items.user_id}
+                      id={index + 1}
+                      avatar={items?.images[1]?.url}
+                      fullname={items?.full_name}
+                      birthDate={items?.data_of_birth}
+                      gender={items?.gender}
+                      phoneNumber={items?.phone_number}
+                      address={items?.address}
+                    />
+                  ))}
+                </Col>
+              )}
             </Row>
           </Col>
           <Col
@@ -301,214 +269,24 @@ const Dashboard = () => {
               gap: "20px",
             }}
           >
-            <StatistikaCard />
-            <StatistikaCard />
+            <StatistikaCard
+              title={"Kirimlar"}
+              icon={IncomeIcon}
+              price={data?.data?.income?.sum}
+              procent={data?.data?.income?.percent}
+            />
+            <StatistikaCard
+              title={"Chiqimlar"}
+              icon={OutecomeIcon}
+              price={data?.data?.cost?.sum}
+              procent={data?.data?.cost?.sum}
+            />
           </Col>
         </Row>
         <Row style={{ width: "full", gap: "25px" }}>
           <Row style={{ gap: "20px", width: "76%" }}>
-            <Col
-              style={{
-                background: "var(--oq-rang-1)",
-                border: "1px solid var(--qidiruv-tizimi-1)",
-                borderRadius: "4px",
-                width: "49%",
-              }}
-            >
-              <Row
-                style={{
-                  padding: "20px 20px 10px 20px",
-                  borderBottom: "2px solid  var(--qidiruv-tizimi-1)",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Title
-                  level={2}
-                  style={{
-                    fontWeight: 400,
-                    fontSize: "26px",
-                    color: "var(--matn-rang-1)",
-                    margin: 0,
-                    maxWidth: "160px",
-                    fontFamily: "var(--font-family)",
-                  }}
-                >
-                  {" "}
-                  Bugun kelgan bolalar soni:
-                </Title>
-                <Col>
-                  <Row
-                    style={{
-                      alignItems: "center",
-                      gap: "5px",
-                    }}
-                  >
-                    <Title
-                      level={2}
-                      style={{
-                        fontWeight: 500,
-                        fontSize: "16px",
-                        color: "var(--matn-rang-1)",
-                        margin: 0,
-                        fontFamily: "var(--font-family)",
-                      }}
-                    >
-                      Sana:
-                    </Title>
-                    <Row
-                      style={{
-                        padding: "6px 20px",
-                        border: "1px solid var(--qidiruv-tizimi-1)",
-                        borderRadius: "4px",
-                        background: "var(--stroka-rang-2)",
-                      }}
-                    >
-                      <Title
-                        level={2}
-                        style={{
-                          fontWeight: 500,
-                          fontSize: "16px",
-                          color: "var(--matn-rang-1)",
-                          margin: 0,
-                          fontFamily: "var(--font-family)",
-                        }}
-                      >
-                        11.05.2024
-                      </Title>
-                    </Row>
-                  </Row>
-                  <Title
-                    level={2}
-                    style={{
-                      fontWeight: 500,
-                      fontSize: "22px",
-                      color: "var(--breand-rang-1)",
-                      margin: 0,
-                      fontFamily: "var(--font-family)",
-                    }}
-                  >
-                    100 ta
-                  </Title>
-                </Col>
-              </Row>
-              <Col
-                style={{
-                  padding: "20px",
-                }}
-              >
-                <Row style={{ gap: "233px", marginBottom: "10px" }}>
-                  <Row style={{ gap: "22px" }}>
-                    <Title
-                      level={4}
-                      style={{
-                        fontWeight: 500,
-                        fontSize: "16px",
-                        color: "var(--filter-matn-rang-1)",
-                        fontFamily: "var(--font-family)",
-                        margin: 0,
-                      }}
-                    >
-                      {" "}
-                      #
-                    </Title>
-                    <Title
-                      level={4}
-                      style={{
-                        fontWeight: 500,
-                        fontSize: "16px",
-                        color: "var(--filter-matn-rang-1)",
-                        fontFamily: "var(--font-family)",
-                        margin: 0,
-                      }}
-                    >
-                      {" "}
-                      Bolalar F.I.O
-                    </Title>
-                  </Row>
-                  <Title
-                    level={4}
-                    style={{
-                      fontWeight: 500,
-                      fontSize: "16px",
-                      color: "var(--filter-matn-rang-1)",
-                      fontFamily: "var(--font-family)",
-                      margin: 0,
-                    }}
-                  >
-                    {" "}
-                    Jinsi
-                  </Title>
-                </Row>
-                <Col
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "20px",
-                    height: "190px",
-                    overflowY: "auto",
-                    overflowX: "hidden",
-                    paddingRight: "10px",
-                  }}
-                  className="custom-scroll"
-                >
-                  {dataSource.map((items, index) => (
-                    <TodayArrivedStudentsCard
-                      id={index + 1}
-                      avatar={items.avatar}
-                      fullname={items.name}
-                      gender={items.gender}
-                    />
-                  ))}
-                </Col>
-              </Col>
-            </Col>
-            <Col
-              style={{
-                background: "var(--oq-rang-1)",
-                border: "1px solid var(--qidiruv-tizimi-1)",
-                borderRadius: "4px",
-                width: "48.9%",
-              }}
-            >
-              <Row
-                style={{
-                  padding: "20px 20px 10px 20px",
-                  borderBottom: "2px solid  var(--qidiruv-tizimi-1)",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Title
-                  level={2}
-                  style={{
-                    fontWeight: 400,
-                    fontSize: "26px",
-                    color: "var(--matn-rang-1)",
-                    margin: 0,
-                    maxWidth: "160px",
-                    fontFamily: "var(--font-family)",
-                  }}
-                >
-                  {" "}
-                  Bugun kelgan bolalar soni:
-                </Title>
-                <Title
-                  level={2}
-                  style={{
-                    fontWeight: 500,
-                    fontSize: "50px",
-                    color: "var(--breand-rang-1)",
-                    margin: 0,
-                    fontFamily: "var(--font-family)",
-                  }}
-                >
-                  100%
-                </Title>
-              </Row>
-              <Col style={{ padding: " 40px 35px 0px 40px" }}>
-                <DonutChart />
-              </Col>
-            </Col>
+            <TodayArrivedStudentsComponents />
+            <AgeDistributionComponents ageStats={data?.data?.ageStats} />
           </Row>
           <Col
             style={{
@@ -518,7 +296,12 @@ const Dashboard = () => {
               gap: "20px",
             }}
           >
-            <StatistikaCard />
+            <StatistikaCard
+              title={"Bolalar soni"}
+              icon={StudentCountIcon}
+              studentCount={data?.data?.studentCount}
+              procent={30}
+            />
           </Col>
         </Row>
       </Col>

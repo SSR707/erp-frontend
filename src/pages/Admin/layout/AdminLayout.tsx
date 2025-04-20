@@ -10,6 +10,7 @@ import NotificationIcon from "@/assets/svg/notification.icon.svg";
 import { Outlet } from "react-router-dom";
 import { menu, menuBootm } from "./components/layout.menu";
 import Title from "antd/es/typography/Title";
+import { useGetAmdinProfile } from "./service/query/useGetAmdinProfile";
 const { Header, Sider, Content } = Layout;
 
 const AdminLayout = () => {
@@ -17,6 +18,8 @@ const AdminLayout = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const { data } = useGetAmdinProfile();
+  console.log(data);
   return (
     <Layout style={{ minHeight: "100vh", overflow: "hidden" }}>
       <Sider
@@ -114,7 +117,7 @@ const AdminLayout = () => {
               >
                 <img src={NotificationIcon} width={24} height={24} alt="" />
               </Button>
-              <Avatar src={MainLogo} alt="Logo" size={38} />
+              <Avatar src={data?.data?.images[1]?.url} alt="Logo" size={38} />
               <Col>
                 <Title
                   level={3}
@@ -127,7 +130,7 @@ const AdminLayout = () => {
                   }}
                 >
                   {" "}
-                  Ruslan Mirzaev
+                  {data?.data.full_name}
                 </Title>
                 <Title
                   level={4}

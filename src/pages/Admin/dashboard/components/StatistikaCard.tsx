@@ -1,11 +1,23 @@
 import { Col, Row } from "antd";
-// @ts-ignore
-import IncomeIcon from "@/assets/svg/Income.icon.svg";
 //@ts-ignore
 import CalendarIcon from "@/assets/svg/calendar-icon.svg";
 import Title from "antd/es/typography/Title";
 
-export const StatistikaCard = () => {
+interface IStatistikaCard {
+  icon: string | undefined;
+  title: string | undefined;
+  price?: number | undefined;
+  procent: number | undefined;
+  studentCount?: number | undefined;
+}
+
+export const StatistikaCard = ({
+  icon,
+  title,
+  price,
+  procent,
+  studentCount,
+}: IStatistikaCard) => {
   return (
     <Col
       style={{
@@ -26,7 +38,7 @@ export const StatistikaCard = () => {
           marginBottom: "5px",
         }}
       >
-        <img width={32} height={32} src={IncomeIcon} alt="" />
+        <img width={32} height={32} src={icon} alt="" />
       </Col>
       <Title
         level={3}
@@ -39,7 +51,7 @@ export const StatistikaCard = () => {
         }}
       >
         {" "}
-        Kirimlar
+        {title}
       </Title>
       <Title
         level={3}
@@ -53,7 +65,9 @@ export const StatistikaCard = () => {
         }}
       >
         {" "}
-        12 000 000 so’m
+        {title === "Bolalar soni"
+          ? `${studentCount ?? 0} ta`
+          : `${price?.toString()?.toLocaleLowerCase() ?? 0} so’m`}
       </Title>
 
       <Row style={{ alignItems: "center", gap: "5px", marginTop: "20px" }}>
@@ -71,8 +85,17 @@ export const StatistikaCard = () => {
         >
           {" "}
           Kechagi kunga nisbatan{" "}
-          <span style={{ fontWeight: 600, color: "var(--qizil-rang-1)" }}>
-            -30%
+          <span
+            style={{
+              fontWeight: 600,
+              color: procent
+                ? procent < 0
+                  ? "var(--qizil-rang-1)"
+                  : "var(--breand-rang-2)"
+                : "",
+            }}
+          >
+            {procent ?? 0}%
           </span>
         </Title>
       </Row>
