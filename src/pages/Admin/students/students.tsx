@@ -1,4 +1,4 @@
-import { Button, Col, Row, Spin } from "antd";
+import { Button, Col, Pagination, Row, Spin } from "antd";
 import Title from "antd/es/typography/Title";
 //@ts-ignore
 import AddIconSvg from "@/assets/svg/add.icon.svg";
@@ -7,99 +7,11 @@ import FilterSvg from "@/assets/svg/fillter.icon.svg";
 import { StudentCard } from "./components/StudentCard";
 import useGetAllStudent from "./service/query/useGetAllStudent";
 import { useNavigate } from "react-router-dom";
-const dataSource = [
-  {
-    key: "1",
-    name: "Sultonov Shokirjon Tursinjon o’g’li",
-    dob: "15.05.1996",
-    gender: "male",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-    group: "15-gurux",
-    attendance: true,
-  },
-  {
-    key: "2",
-    name: "Nodirova Shodiya Tursinjon qizi",
-    dob: "15.05.1996",
-    gender: "female",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/women/1.jpg",
-    group: "15-gurux",
-    attendance: true,
-  },
-  {
-    key: "3",
-    name: "Sultonov Shokirjon Tursinjon o’g’li",
-    dob: "15.05.1996",
-    gender: "male",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-    group: "15-gurux",
-    attendance: true,
-  },
-  {
-    key: "3",
-    name: "Sultonov Shokirjon Tursinjon o’g’li",
-    dob: "15.05.1996",
-    gender: "male",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-    group: "15-gurux",
-    attendance: true,
-  },
-  {
-    key: "3",
-    name: "Sultonov Shokirjon Tursinjon o’g’li",
-    dob: "15.05.1996",
-    gender: "male",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-    group: "17-gurux",
-    attendance: false,
-  },
-  {
-    key: "3",
-    name: "Sultonov Shokirjon Tursinjon o’g’li",
-    dob: "15.05.1996",
-    gender: "male",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-    group: "15-gurux",
-    attendance: true,
-  },
-  {
-    key: "3",
-    name: "Sultonov Shokirjon Tursinjon o’g’li",
-    dob: "15.05.1996",
-    gender: "male",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-    group: "18-gurux",
-    attendance: false,
-  },
-  {
-    key: "3",
-    name: "Sultonov Shokirjon Tursinjon o’g’li",
-    dob: "15.05.1996",
-    gender: "male",
-    contact: "+998 (93) 123-45-67",
-    address: "Toshkent. Sentr",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-    group: "18-gurux",
-    attendance: false,
-  },
-];
+import { useState } from "react";
 const Students = () => {
-  const { data, isLoading } = useGetAllStudent();
-  console.log(data);
+  const [page, setPage] = useState<number>(1);
+  console.log(page);
+  const { data, isLoading } = useGetAllStudent(page, 10);
   const navigate = useNavigate();
   return (
     <>
@@ -261,8 +173,8 @@ const Students = () => {
           >
             {data?.data.map((items, index) => (
               <StudentCard
-                key={index}
-                id={index + 1}
+                key={items.user_id}
+                id={index + 1 }
                 avatar={items?.images[0]?.url}
                 fullname={items?.full_name}
                 birthDate={items?.data_of_birth}
@@ -275,6 +187,23 @@ const Students = () => {
               />
             ))}
           </Col>
+          <Row
+            style={{
+              width: "full",
+              justifyContent: "center",
+              padding: "30px 0px 10px 0px",
+            }}
+          >
+            <Pagination
+              align="center"
+              className="custom-pagination"
+              defaultCurrent={1}
+              total={data?.meta.studentCount}
+              onChange={(page: number) => {
+                setPage(page);
+              }}
+            />
+          </Row>
         </Col>
       )}
     </>

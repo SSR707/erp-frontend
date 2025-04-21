@@ -4,6 +4,11 @@ export interface IGetStudentInterface {
   status: number;
   message: string;
   data: IStudetn[];
+  meta: IMeta;
+}
+
+export interface IMeta {
+  studentCount: number;
 }
 
 export interface IStudetn {

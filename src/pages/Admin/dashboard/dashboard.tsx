@@ -16,7 +16,6 @@ import { useGetDashboard } from "./service/query/useGetDashboard";
 import TodayArrivedStudentsComponents from "./components/TodayArrivedStudentsComponents";
 import AgeDistributionComponents from "./components/AgeDistributionComponents";
 
-
 const items: MenuProps["items"] = [
   {
     key: "1",
@@ -249,7 +248,8 @@ const Dashboard = () => {
                     <UserCard
                       key={items.user_id}
                       id={index + 1}
-                      avatar={items?.images[1]?.url}
+                      itemIndex={index}
+                      avatar={items?.images[0]?.url}
                       fullname={items?.full_name}
                       birthDate={items?.data_of_birth}
                       gender={items?.gender}
@@ -279,7 +279,7 @@ const Dashboard = () => {
               title={"Chiqimlar"}
               icon={OutecomeIcon}
               price={data?.data?.cost?.sum}
-              procent={data?.data?.cost?.sum}
+              procent={data?.data?.cost?.percent}
             />
           </Col>
         </Row>

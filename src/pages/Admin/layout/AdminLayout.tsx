@@ -7,8 +7,8 @@ import MainLogo from "@/assets/svg/mian.logo.svg";
 import SearchIcon from "@/assets/svg/search.icon.svg";
 // @ts-ignore
 import NotificationIcon from "@/assets/svg/notification.icon.svg";
-import { Outlet } from "react-router-dom";
-import { menu, menuBootm } from "./components/layout.menu";
+import { Outlet, useLocation } from "react-router-dom";
+import { menu, menuBootm, SelectedKeys } from "./components/layout.menu";
 import Title from "antd/es/typography/Title";
 import { useGetAmdinProfile } from "./service/query/useGetAmdinProfile";
 const { Header, Sider, Content } = Layout;
@@ -19,7 +19,8 @@ const AdminLayout = () => {
     token: { colorBgContainer },
   } = theme.useToken();
   const { data } = useGetAmdinProfile();
-  console.log(data);
+  const path = useLocation().pathname.split("/")[1];
+  const select = path ? SelectedKeys[path] : 1;
   return (
     <Layout style={{ minHeight: "100vh", overflow: "hidden" }}>
       <Sider
@@ -46,7 +47,7 @@ const AdminLayout = () => {
             marginBottom: "438px",
           }}
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={[`${select}`]}
           items={menu}
         />
         <Menu

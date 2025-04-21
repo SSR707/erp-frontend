@@ -7,7 +7,9 @@ export const useGetDashboard = (fullname: string, category: string) => {
     queryKey: ["dashboard", fullname, category],
     queryFn: () =>
       instance
-        .get<IGetDashboard>("/statistics/dashboard", )
+        .get<IGetDashboard>("/statistics/dashboard", {
+          params: { fullname, category },
+        })
         .then((res) => res.data),
   });
 };

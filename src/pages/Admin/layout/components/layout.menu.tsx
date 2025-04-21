@@ -54,3 +54,12 @@ export const menuBootm = [
     label: <Link to="/settings">Chiqish</Link>,
   },
 ];
+
+export const SelectedKeys: Record<string, number> = {
+  "": 1,
+  students: 2,
+  teachers: 3,
+  groups: 4,
+  reports: 5,
+  settings: 0,
+};

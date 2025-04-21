@@ -11,6 +11,7 @@ export interface IUserCard {
   phoneNumber: string;
   address: string;
   gender: string;
+  itemIndex: number;
 }
 
 export const UserCard = ({
@@ -19,6 +20,7 @@ export const UserCard = ({
   fullname,
   birthDate,
   gender,
+  itemIndex,
   phoneNumber,
   address,
 }: IUserCard) => {
@@ -34,7 +36,9 @@ export const UserCard = ({
         padding: "15px",
       }}
     >
-      <Row style={{ alignItems: "center", gap: "50px" }}>
+      <Row
+        style={{ alignItems: "center", gap: "50px" }}
+      >
         <Row style={{ alignItems: "center", gap: "15px" }}>
           {" "}
           <Title
@@ -100,6 +104,7 @@ export const UserCard = ({
             style={{
               fontWeight: 400,
               fontSize: "16px",
+              maxWidth: "95px",
               color: "var(--matn-rang-1)",
               fontFamily: "var(--font-family)",
               margin: 0,

@@ -40,14 +40,35 @@
   position: relative !important;
 }
 
-.ant-menu-item-selected::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 46px;
+.custom-pagination .ant-pagination-item {
+  border-radius: 50% !important;
+  width: 34px;
+  height: 34px;
+  text-align: center;
+}
+
+.custom-pagination .ant-pagination-item:hover {
+  background-color: transparent !important;
+  border-color: #d9d9d9 !important;
+}
+
+.custom-pagination .ant-pagination-item-active {
   background-color: var(--breand-rang-1);
-  border-radius: 5px !important;
+  color: #fff;
+  border-color: var(--breand-rang-1) !important;
+}
+
+.custom-pagination .ant-pagination-prev,
+.custom-pagination .ant-pagination-next {
+  border-radius: 50% !important;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.custom-pagination .ant-pagination-prev:hover,
+.custom-pagination .ant-pagination-next:hover {
+  background-color: transparent !important;
+  border-color: #d9d9d9 !important;
 }
