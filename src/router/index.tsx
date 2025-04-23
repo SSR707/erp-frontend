@@ -10,6 +10,7 @@ import Groups from "@/pages/Admin/groups/groups";
 import Reports from "@/pages/Admin/reports/reports";
 import Settings from "@/pages/Admin/settings/settings";
 import StudentCreate from "@/pages/Admin/studetn-create/student-create";
+import TeacherCreate from "@/pages/Admin/teacher-create/teacher-create";
 
 export const routes: IRoutes[] = [
   {
@@ -50,6 +51,10 @@ export const routes: IRoutes[] = [
         {
           path: "/student/create",
           element: <StudentCreate />,
+        },
+        {
+          path: "/teacher/create",
+          element: <TeacherCreate />,
         },
       ],
     },

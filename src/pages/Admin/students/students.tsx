@@ -108,7 +108,7 @@ const Students = () => {
               ))}
             </Row>
             <Row style={{ gap: "102px" }}>
-              <Row style={{ gap: "90px" }}>
+              <Row style={{ gap: "91px" }}>
                 {["Tug’ilgan sana", "Jinsi"].map((item, index) => (
                   <Title
                     key={index}
@@ -174,7 +174,7 @@ const Students = () => {
             {data?.data.map((items, index) => (
               <StudentCard
                 key={items.user_id}
-                id={index + 1 }
+                id={(page - 1) * 10 + index + 1}
                 avatar={items?.images[0]?.url}
                 fullname={items?.full_name}
                 birthDate={items?.data_of_birth}

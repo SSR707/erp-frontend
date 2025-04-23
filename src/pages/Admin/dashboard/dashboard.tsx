@@ -248,7 +248,6 @@ const Dashboard = () => {
                     <UserCard
                       key={items.user_id}
                       id={index + 1}
-                      itemIndex={index}
                       avatar={items?.images[0]?.url}
                       fullname={items?.full_name}
                       birthDate={items?.data_of_birth}

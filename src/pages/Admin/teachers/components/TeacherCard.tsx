@@ -9,6 +9,7 @@ import EditIconSvg from "@/assets/svg/edit.icon.svg";
 //@ts-ignore
 import DeleteIconSvg from "@/assets/svg/delete.icon.svg";
 import dayjs from "dayjs";
+import { EyeOutlined } from "@ant-design/icons";
 import { formatPhoneNumber } from "@/utils/format/format.phone.nuber";
 
 export interface IStudentCard {
@@ -110,28 +111,16 @@ export const TeacherCard = ({
           >
             {phone}
           </Title>
-          <Row style={{ gap: "15px", alignItems: "center" }}>
-            <Button
-              style={{
-                border: "none",
-                background: "transparent",
-                padding: "0px",
-                boxShadow: "none",
-              }}
-            >
-              <img src={EditIconSvg} alt="" />
-            </Button>
-            <Button
-              style={{
-                border: "none",
-                background: "transparent",
-                padding: "0px",
-                boxShadow: "none",
-              }}
-            >
-              <img src={DeleteIconSvg} alt="" />
-            </Button>
-          </Row>
+          <Button
+            style={{
+              border: "none",
+              background: "var(--breand-rang-2)",
+              padding: "10px 15px",
+              boxShadow: "none",
+            }}
+          >
+            <EyeOutlined style={{ fontSize: "24px", color: "#fff" }} />
+          </Button>
         </Row>
       </Row>
     </Row>

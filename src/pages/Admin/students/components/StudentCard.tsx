@@ -1,4 +1,5 @@
 import { Avatar, Button, Col, Row, Tag } from "antd";
+import { EyeOutlined } from "@ant-design/icons";
 import Title from "antd/es/typography/Title";
 //@ts-ignore
 import OkIconSvg from "@/assets/svg/ok.icon.svg";
@@ -85,7 +86,7 @@ export const StudentCard = ({
             </Title>{" "}
           </Row>
         </Row>
-        <Row style={{ alignItems: "center", gap: "90px" }}>
+        <Row style={{ alignItems: "center", gap: "91px" }}>
           <Title
             level={2}
             style={{
@@ -206,28 +207,16 @@ export const StudentCard = ({
               </Row>
             ) : null}
           </Col>
-          <Row style={{ gap: "15px", alignItems: "center" }}>
-            <Button
-              style={{
-                border: "none",
-                background: "transparent",
-                padding: "0px",
-                boxShadow: "none",
-              }}
-            >
-              <img src={EditIconSvg} alt="" />
-            </Button>
-            <Button
-              style={{
-                border: "none",
-                background: "transparent",
-                padding: "0px",
-                boxShadow: "none",
-              }}
-            >
-              <img src={DeleteIconSvg} alt="" />
-            </Button>
-          </Row>
+          <Button
+            style={{
+              border: "none",
+              background: "var(--breand-rang-2)",
+              padding: "10px 15px",
+              boxShadow: "none",
+            }}
+          >
+            <EyeOutlined style={{ fontSize: "24px", color: "#fff" }} />
+          </Button>
         </Row>
       </Row>
     </Row>

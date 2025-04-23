@@ -11,7 +11,6 @@ export interface IUserCard {
   phoneNumber: string;
   address: string;
   gender: string;
-  itemIndex: number;
 }
 
 export const UserCard = ({
@@ -20,7 +19,6 @@ export const UserCard = ({
   fullname,
   birthDate,
   gender,
-  itemIndex,
   phoneNumber,
   address,
 }: IUserCard) => {
@@ -36,9 +34,7 @@ export const UserCard = ({
         padding: "15px",
       }}
     >
-      <Row
-        style={{ alignItems: "center", gap: "50px" }}
-      >
+      <Row style={{ alignItems: "center", gap: "50px" }}>
         <Row style={{ alignItems: "center", gap: "15px" }}>
           {" "}
           <Title
@@ -83,8 +79,8 @@ export const UserCard = ({
             {dayjs(birthDate).format("DD-MM-YYYY")}
           </Title>
           <Row style={{ width: "69px" }}>
-            <Tag color={gender === "male" ? "green" : "red"}>
-              {gender === "male" ? "O’g’il bola" : "Qiz bola"}
+            <Tag color={gender === "MALE" ? "green" : "red"}>
+              {gender === "MALE" ? "O’g’il bola" : "Qiz bola"}
             </Tag>
           </Row>
           <Title
