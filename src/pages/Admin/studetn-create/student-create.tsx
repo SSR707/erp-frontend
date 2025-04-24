@@ -23,7 +23,7 @@ import OkIconSvg from "@/assets/svg/create.ok.icon.svg";
 //@ts-ignore
 import NoIconSvg from "@/assets/svg/create.no.icon.svg";
 import { useState } from "react";
-import { useGetAllGroup } from "./service/query/useGetAllGroup";
+import { useGetAllGroup } from "../groups/service/query/useGetAllGroup";
 import { useUploadImgStudent } from "./service/mutation/usePostStudentUploadIng";
 import { usePostCreateStudent } from "./service/mutation/usePostStudentCreate";
 import { Dayjs } from "dayjs";
@@ -50,7 +50,7 @@ const StudentCreate = () => {
     useUploadImgStudent();
   const { mutate: createStudent, isPending: createStudentPading } =
     usePostCreateStudent();
-  const { data: groupData } = useGetAllGroup();
+  const { data: groupData } = useGetAllGroup(1,100);
   const changeUpload: UploadProps["onChange"] = ({ file }) => {
     if (file.originFileObj && !createImgPeading) {
       uploadMutate(file.originFileObj, {

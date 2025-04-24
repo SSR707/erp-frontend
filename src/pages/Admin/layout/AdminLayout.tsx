@@ -1,20 +1,43 @@
 import { useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Avatar, Button, Col, Input, Layout, Menu, Row, theme } from "antd";
+import {
+  Avatar,
+  Button,
+  Col,
+  Input,
+  Layout,
+  Menu,
+  Modal,
+  Row,
+  theme,
+} from "antd";
 // @ts-ignore
 import MainLogo from "@/assets/svg/mian.logo.svg";
 // @ts-ignore
 import SearchIcon from "@/assets/svg/search.icon.svg";
 // @ts-ignore
 import NotificationIcon from "@/assets/svg/notification.icon.svg";
-import { Outlet, useLocation } from "react-router-dom";
+// @ts-ignore
+import MenuIcon7 from "@/assets/svg/menu-icon-7.svg";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { menu, menuBootm, SelectedKeys } from "./components/layout.menu";
 import Title from "antd/es/typography/Title";
 import { useGetAmdinProfile } from "./service/query/useGetAmdinProfile";
+import { useAuthStore } from "@/store/useAtuhStore";
 const { Header, Sider, Content } = Layout;
 
 const AdminLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [modal2Open, setModal2Open] = useState(false);
+  const handleLogoutClick = () => {
+    setModal2Open(true);
+  };
+  const navigate = useNavigate();
+  const { loOut } = useAuthStore((state) => state);
+  const logout = () => {
+    loOut();
+    navigate("/login", { replace: true });
+  };
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -44,7 +67,7 @@ const AdminLayout = () => {
         <Menu
           style={{
             backgroundColor: "var( --oq-rang-1)",
-            marginBottom: "438px",
+            marginBottom: "400px",
           }}
           mode="inline"
           defaultSelectedKeys={[`${select}`]}
@@ -56,7 +79,17 @@ const AdminLayout = () => {
           }}
           mode="inline"
           selectable={false}
-          items={menuBootm}
+          items={[
+            ...menuBootm,
+            {
+              key: "7",
+              icon: (
+                <img src={MenuIcon7} width={24} height={24} alt="Chiqish" />
+              ),
+              label: "Chiqish",
+              onClick: handleLogoutClick,
+            },
+          ]}
         />
       </Sider>
       <Layout>
@@ -131,7 +164,7 @@ const AdminLayout = () => {
                   }}
                 >
                   {" "}
-                  {data?.data.full_name}
+                  {data?.data?.full_name}
                 </Title>
                 <Title
                   level={4}
@@ -159,6 +192,53 @@ const AdminLayout = () => {
           }}
         >
           <Outlet />
+          <Modal
+            centered
+            closable={false}
+            open={modal2Open}
+            footer={[
+              <Button
+                key="cancel"
+                onClick={() => setModal2Open(false)}
+                style={{
+                  backgroundColor: "var(--qidiruv-tizimi-1)",
+                  color: "#000",
+                  margin: "0 8px",
+                  border: "none",
+                  padding: "20px 30px",
+                }}
+              >
+                Yo'q
+              </Button>,
+              <Button
+                key="cancel"
+                onClick={() => {
+                  logout(), setModal2Open(false);
+                }}
+                style={{
+                  backgroundColor: "var(--breand-rang-1)",
+                  color: "#fff",
+                  margin: "0 8px",
+                  border: "none",
+                  padding: "20px 30px",
+                }}
+              >
+                Ha
+              </Button>,
+            ]}
+          >
+            <p
+              style={{
+                fontWeight: 700,
+                fontSize: "24px",
+                color: "var(--matn-rang-1)",
+                fontFamily: "var(--font-family)",
+                margin: "15px 0px",
+              }}
+            >
+              Platformadan chiqishni xohlaysizmi?
+            </p>
+          </Modal>
         </Content>
       </Layout>
     </Layout>

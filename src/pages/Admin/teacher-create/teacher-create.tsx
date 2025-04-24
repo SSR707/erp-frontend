@@ -23,7 +23,6 @@ import OkIconSvg from "@/assets/svg/create.ok.icon.svg";
 //@ts-ignore
 import NoIconSvg from "@/assets/svg/create.no.icon.svg";
 import { useState } from "react";
-import { useGetAllGroup } from "@/pages/Admin/studetn-create/service/query/useGetAllGroup";
 import { usePostTeacherUploadImg } from "./service/mutation/usePostTeacherUploadImg";
 import { usePostTeacherCreate } from "./service/mutation/usePostTeacherCreate";
 import { Dayjs } from "dayjs";
@@ -47,7 +46,7 @@ const TeacherCreate = () => {
     usePostTeacherUploadImg();
   const { mutate: createTeacher, isPending: createTeacherPading } =
     usePostTeacherCreate();
-  const { data: groupData } = useGetAllGroup();
+
   const changeUpload: UploadProps["onChange"] = ({ file }) => {
     if (file.originFileObj && !createImgPeading) {
       uploadMutate(file.originFileObj, {

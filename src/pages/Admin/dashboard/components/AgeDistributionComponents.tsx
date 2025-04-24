@@ -29,12 +29,12 @@ const AgeDistributionComponents = ({ ageStats }: AgeDistributionProps) => {
             fontSize: "26px",
             color: "var(--matn-rang-1)",
             margin: 0,
-            maxWidth: "160px",
+            maxWidth: "250px",
             fontFamily: "var(--font-family)",
           }}
         >
           {" "}
-          Bugun kelgan bolalar soni:
+          Bolalarni yosh bo’yicha statiskasi:
         </Title>
         <Title
           level={2}

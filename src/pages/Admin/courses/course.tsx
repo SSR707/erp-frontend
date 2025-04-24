@@ -4,19 +4,16 @@ import Title from "antd/es/typography/Title";
 import AddIconSvg from "@/assets/svg/add.icon.svg";
 //@ts-ignore
 import FilterSvg from "@/assets/svg/fillter.icon.svg";
-import { StudentCard } from "./components/StudentCard";
-import useGetAllStudent from "./service/query/useGetAllStudent";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-const Students = () => {
-  const [page, setPage] = useState<number>(1);
-  console.log(page);
-  const { data, isLoading } = useGetAllStudent(page, 10);
-  console.log(data?.data);
+import { useGetCourse } from "./service/query/useGetAllCourse";
+import { CourseCard } from "./components/CourseCard";
+const Courses = () => {
   const navigate = useNavigate();
+  const [page, setPage] = useState<number>(1);
+  const { data, isLoading } = useGetCourse(page, 10);
   return (
     <>
-      {" "}
       <Row
         style={{
           padding: "22px 20px 15px 20px",
@@ -36,11 +33,11 @@ const Students = () => {
           }}
         >
           {" "}
-          O’quvchilar jadvali
+          Kurslar jadvali
         </Title>
         <Row style={{ gap: "15px", alignItems: "center" }}>
           <Button
-            onClick={() => navigate("/student/create")}
+            onClick={() => navigate("/group/create")}
             style={{
               display: "flex",
               gap: "10px",
@@ -86,13 +83,13 @@ const Students = () => {
           <Row
             style={{
               borderRadius: "4px",
-              padding: "6px 30px",
+              padding: "6px 40px ",
               gap: "96px",
               marginBottom: "10px",
             }}
           >
-            <Row style={{ gap: "50px", width: "300px" }}>
-              {["#", "O’qituvchilar F.I.O"].map((item, index) => (
+            <Row style={{ gap: "50px", width: "333px" }}>
+              {["#", "Nomi"].map((item, index) => (
                 <Title
                   key={index}
                   level={2}
@@ -108,60 +105,22 @@ const Students = () => {
                 </Title>
               ))}
             </Row>
-            <Row style={{ gap: "102px" }}>
-              <Row style={{ gap: "91px" }}>
-                {["Tug’ilgan sana", "Jinsi"].map((item, index) => (
-                  <Title
-                    key={index}
-                    level={2}
-                    style={{
-                      fontWeight: 500,
-                      fontSize: "16px",
-                      color: "var(--filter-matn-rang-1)",
-                      fontFamily: "var(--font-family)",
-                      margin: 0,
-                    }}
-                  >
-                    {item}
-                  </Title>
-                ))}
-              </Row>
-              <Row style={{ gap: "78px" }}>
-                <Row style={{ gap: "50px" }}>
-                  {["Gurux raqami  ", "Davomat"].map((item, index) => (
-                    <Title
-                      key={index}
-                      level={2}
-                      style={{
-                        fontWeight: 500,
-                        fontSize: "16px",
-                        color: "var(--filter-matn-rang-1)",
-                        fontFamily: "var(--font-family)",
-                        margin: 0,
-                      }}
-                    >
-                      {item}
-                    </Title>
-                  ))}
-                </Row>
-                <Row style={{ gap: "88px" }}>
-                  {["To’lov", "Imkonyatlar"].map((item, index) => (
-                    <Title
-                      key={index}
-                      level={2}
-                      style={{
-                        fontWeight: 500,
-                        fontSize: "16px",
-                        color: "var(--filter-matn-rang-1)",
-                        fontFamily: "var(--font-family)",
-                        margin: 0,
-                      }}
-                    >
-                      {item}
-                    </Title>
-                  ))}
-                </Row>
-              </Row>
+            <Row style={{ gap: "250px" }}>
+              {["Davomiligi", "Daraja", "Imkonyatlar"].map((item, index) => (
+                <Title
+                  key={index}
+                  level={2}
+                  style={{
+                    fontWeight: 500,
+                    fontSize: "16px",
+                    color: "var(--filter-matn-rang-1)",
+                    fontFamily: "var(--font-family)",
+                    margin: 0,
+                  }}
+                >
+                  {item}
+                </Title>
+              ))}
             </Row>
           </Row>
           <Col
@@ -173,18 +132,13 @@ const Students = () => {
             }}
           >
             {data?.data.map((items, index) => (
-              <StudentCard
-                key={items.user_id}
-                id={(page - 1) * 10 + index + 1}
-                avatar={items?.images[0]?.url}
-                fullname={items?.full_name}
-                birthDate={items?.data_of_birth}
-                gender={items?.gender}
-                group={items?.group_members[0]?.group.name}
+              <CourseCard
+                key={index}
+                id={index + 1}
+                name={items?.name}
+                duration={items?.duration}
+                status={items?.status}
                 indexItem={index}
-                attendance={true}
-                paymentType={items?.PaymentForStudent[0].type}
-                sum={items?.PaymentForStudent[0].sum}
               />
             ))}
           </Col>
@@ -199,7 +153,7 @@ const Students = () => {
               align="center"
               className="custom-pagination"
               defaultCurrent={1}
-              total={data?.meta.studentCount}
+              total={data?.meta?.total}
               onChange={(page: number) => {
                 setPage(page);
               }}
@@ -211,4 +165,4 @@ const Students = () => {
   );
 };
 
-export default Students;
+export default Courses;

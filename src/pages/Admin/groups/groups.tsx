@@ -1,16 +1,17 @@
-import { Button, Col, Row, Spin } from "antd";
+import { Button, Col, Pagination, Row, Spin } from "antd";
 import Title from "antd/es/typography/Title";
 //@ts-ignore
 import AddIconSvg from "@/assets/svg/add.icon.svg";
 //@ts-ignore
 import FilterSvg from "@/assets/svg/fillter.icon.svg";
-import { useGetAllGroup } from "@/pages/Admin/studetn-create/service/query/useGetAllGroup";
+import { useGetAllGroup } from "./service/query/useGetAllGroup";
 import { useNavigate } from "react-router-dom";
 import { GroupCard } from "./components/GroupCard";
+import { useState } from "react";
 const Groups = () => {
   const navigate = useNavigate();
-  const { data, isLoading } = useGetAllGroup();
-  console.log(data);
+  const [page, setPage] = useState<number>(1);
+  const { data, isLoading } = useGetAllGroup(page, 10);
   return (
     <>
       <Row
@@ -32,11 +33,11 @@ const Groups = () => {
           }}
         >
           {" "}
-          O’qituvchilar jadvali
+          Guruhlar jadvali
         </Title>
         <Row style={{ gap: "15px", alignItems: "center" }}>
           <Button
-            // onClick={() => navigate()}
+            onClick={() => navigate("/group/create")}
             style={{
               display: "flex",
               gap: "10px",
@@ -82,7 +83,7 @@ const Groups = () => {
           <Row
             style={{
               borderRadius: "4px",
-              padding: "6px 40px",
+              padding: "6px 40px ",
               gap: "96px",
               marginBottom: "10px",
             }}
@@ -105,7 +106,7 @@ const Groups = () => {
               ))}
             </Row>
             <Row style={{ gap: "250px" }}>
-              {["Boshlangan sana", "Daraja", "Imkonyatlar"].map(
+              {["Boshlangan sana", "Holati", "Imkonyatlar"].map(
                 (item, index) => (
                   <Title
                     key={index}
@@ -137,12 +138,29 @@ const Groups = () => {
                 key={index}
                 id={index + 1}
                 name={items?.name}
-                startDate={items.created_at}
+                startDate={items?.startDate}
                 status={items?.status}
                 indexItem={index}
               />
             ))}
           </Col>
+          <Row
+            style={{
+              width: "full",
+              justifyContent: "center",
+              padding: "30px 0px 10px 0px",
+            }}
+          >
+            <Pagination
+              align="center"
+              className="custom-pagination"
+              defaultCurrent={1}
+              total={data?.meta?.totalCount}
+              onChange={(page: number) => {
+                setPage(page);
+              }}
+            />
+          </Row>
         </Col>
       )}
     </>

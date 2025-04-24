@@ -37,8 +37,8 @@ export const menu = [
   },
   {
     key: "5",
-    icon: <img src={MenuIcon5} width={24} height={24} alt="Hisobotlar" />,
-    label: <Link to="/reports">Hisobotlar</Link>,
+    icon: <img src={MenuIcon4} width={24} height={24} alt="Kurslar" />,
+    label: <Link to="/courses">Kurslar</Link>,
   },
 ];
 
@@ -48,11 +48,6 @@ export const menuBootm = [
     icon: <img src={MenuIcon6} width={24} height={24} alt="Sozlamalar" />,
     label: <Link to="/settings">Sozlamalar</Link>,
   },
-  {
-    key: "7",
-    icon: <img src={MenuIcon7} width={24} height={24} alt="Chiqish" />,
-    label: <Link to="/settings">Chiqish</Link>,
-  },
 ];
 
 export const SelectedKeys: Record<string, number> = {
@@ -60,6 +55,6 @@ export const SelectedKeys: Record<string, number> = {
   students: 2,
   teachers: 3,
   groups: 4,
-  reports: 5,
+  course: 5,
   settings: 0,
 };

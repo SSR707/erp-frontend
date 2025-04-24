@@ -3,10 +3,11 @@ import { IImages } from "./getDashboard.interface";
 export interface IGetTeachersInterface {
   status: number;
   message: string;
-  data: IStudetn[];
+  data: ITeacher[];
+  meta: IMeta;
 }
 
-export interface IStudetn {
+export interface ITeacher {
   full_name: string;
   username: string;
   password: string;
@@ -19,4 +20,8 @@ export interface IStudetn {
   updated_at: string;
   user_id: string;
   images: IImages[];
+}
+
+export interface IMeta {
+  teacherCount: number;
 }

@@ -1,31 +1,22 @@
 import { Button, Row, Tag } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import Title from "antd/es/typography/Title";
-//@ts-ignore
-import OkIconSvg from "@/assets/svg/ok.icon.svg";
-//@ts-ignore
-import NoiconSvg from "@/assets/svg/no.icon.svg";
-//@ts-ignore
-import EditIconSvg from "@/assets/svg/edit.icon.svg";
-//@ts-ignore
-import DeleteIconSvg from "@/assets/svg/delete.icon.svg";
-import dayjs from "dayjs";
 
-export interface IGroupCard {
+export interface ICourseCard {
   id: number;
   name: string;
   status: string;
-  startDate: string;
+  duration: string;
   indexItem: number;
 }
 
-export const GroupCard = ({
+export const CourseCard = ({
   id,
   name,
   status,
-  startDate,
+  duration,
   indexItem,
-}: IGroupCard) => {
+}: ICourseCard) => {
   return (
     <Row
       style={{
@@ -36,7 +27,7 @@ export const GroupCard = ({
         padding: "15px 40px",
       }}
     >
-      <Row style={{ alignItems: "center", gap: "140px" }}>
+      <Row style={{ alignItems: "center", gap: "110px" }}>
         <Row
           style={{
             alignItems: "center",
@@ -71,18 +62,20 @@ export const GroupCard = ({
             {name}
           </Title>{" "}
         </Row>
-        <Row style={{ alignItems: "center", gap: "261px" }}>
+        <Row style={{ alignItems: "center", gap: "224px" }}>
           <Title
             level={2}
             style={{
               fontWeight: 400,
               fontSize: "16px",
+              textAlign: "center",
+              width: "100px",
               color: "var(--matn-rang-1)",
               fontFamily: "var(--font-family)",
               margin: 0,
             }}
           >
-            {dayjs(startDate).format("DD-MM-YYYY")}
+            {duration} kun
           </Title>
           <Row style={{ alignItems: "center", gap: "244px" }}>
             <Row style={{ width: "78px", justifyContent: "center" }}>

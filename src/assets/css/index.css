@@ -40,6 +40,18 @@
   position: relative !important;
 }
 
+.ant-menu-item-selected::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 46px;
+  background-color: var(--breand-rang-1);
+  border-radius: 5px !important;
+}
+
 .custom-pagination .ant-pagination-item {
   border-radius: 50% !important;
   width: 34px;

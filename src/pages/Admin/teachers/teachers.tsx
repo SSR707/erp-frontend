@@ -1,4 +1,4 @@
-import { Button, Col, Row, Spin } from "antd";
+import { Button, Col, Pagination, Row, Spin } from "antd";
 import Title from "antd/es/typography/Title";
 //@ts-ignore
 import AddIconSvg from "@/assets/svg/add.icon.svg";
@@ -7,10 +7,13 @@ import FilterSvg from "@/assets/svg/fillter.icon.svg";
 import { TeacherCard } from "./components/TeacherCard";
 import { useGetTeachers } from "./service/query/useGetTeachers";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Teachers = () => {
   const navigate = useNavigate();
-  const { data, isLoading } = useGetTeachers();
+  const [page, setPage] = useState<number>(1);
+  const { data, isLoading } = useGetTeachers(page, 10);
+
   return (
     <>
       <Row
@@ -151,7 +154,7 @@ const Teachers = () => {
           >
             {data?.data.map((items, index) => (
               <TeacherCard
-                key={index}
+                key={items?.user_id}
                 id={index + 1}
                 avatar={items?.images[0]?.url}
                 fullname={items?.full_name}
@@ -162,6 +165,23 @@ const Teachers = () => {
               />
             ))}
           </Col>
+          <Row
+            style={{
+              width: "full",
+              justifyContent: "center",
+              padding: "30px 0px 10px 0px",
+            }}
+          >
+            <Pagination
+              align="center"
+              className="custom-pagination"
+              defaultCurrent={1}
+              total={data?.meta?.teacherCount}
+              onChange={(page: number) => {
+                setPage(page);
+              }}
+            />
+          </Row>
         </Col>
       )}
     </>

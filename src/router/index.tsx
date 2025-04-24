@@ -7,10 +7,12 @@ import Dashboard from "@/pages/Admin/dashboard/dashboard";
 import Students from "@/pages/Admin/students/students";
 import Teachers from "@/pages/Admin/teachers/teachers";
 import Groups from "@/pages/Admin/groups/groups";
-import Reports from "@/pages/Admin/reports/reports";
 import Settings from "@/pages/Admin/settings/settings";
 import StudentCreate from "@/pages/Admin/studetn-create/student-create";
 import TeacherCreate from "@/pages/Admin/teacher-create/teacher-create";
+import GroupCreate from "@/pages/Admin/group-create/group-create";
+import Courses from "@/pages/Admin/courses/course";
+import NotFound from "@/pages/notfound/notfound";
 
 export const routes: IRoutes[] = [
   {
@@ -41,8 +43,8 @@ export const routes: IRoutes[] = [
           element: <Groups />,
         },
         {
-          path: "/reports",
-          element: <Reports />,
+          path: "/courses",
+          element: <Courses />,
         },
         {
           path: "/settings",
@@ -55,6 +57,14 @@ export const routes: IRoutes[] = [
         {
           path: "/teacher/create",
           element: <TeacherCreate />,
+        },
+        {
+          path: "/group/create",
+          element: <GroupCreate />,
+        },
+        {
+          path: "/*",
+          element: <NotFound />,
         },
       ],
     },
