@@ -1,10 +1,9 @@
 import { Row } from "antd";
 import Title from "antd/es/typography/Title";
 
-const Settings = () => {
+const TeacherDiteil = () => {
   return (
     <>
-      {" "}
       <Row
         style={{
           padding: "22px 20px 15px 20px",
@@ -24,11 +23,11 @@ const Settings = () => {
           }}
         >
           {" "}
-          Sozlamalar
+          O’qituvchi haqida
         </Title>
       </Row>
     </>
   );
 };
 
-export default Settings;
+export default TeacherDiteil;

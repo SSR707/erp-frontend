@@ -11,6 +11,7 @@ import DeleteIconSvg from "@/assets/svg/delete.icon.svg";
 import dayjs from "dayjs";
 import { EyeOutlined } from "@ant-design/icons";
 import { formatPhoneNumber } from "@/utils/format/format.phone.nuber";
+import { useNavigate } from "react-router-dom";
 
 export interface IStudentCard {
   id: number;
@@ -20,6 +21,7 @@ export interface IStudentCard {
   gender: string;
   phone_number: string;
   indexItem: number;
+  user_id: string;
 }
 
 export const TeacherCard = ({
@@ -30,8 +32,10 @@ export const TeacherCard = ({
   phone_number,
   indexItem,
   gender,
+  user_id,
 }: IStudentCard) => {
   const phone = formatPhoneNumber(phone_number);
+  const navigate = useNavigate();
   return (
     <Row
       style={{
@@ -112,6 +116,7 @@ export const TeacherCard = ({
             {phone}
           </Title>
           <Button
+            onClick={() => navigate(`/teacher/${user_id}`)}
             style={{
               border: "none",
               background: "var(--breand-rang-2)",

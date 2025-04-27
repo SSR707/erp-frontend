@@ -1,6 +1,8 @@
 import { Col, Row } from "antd";
 //@ts-ignore
 import CalendarIcon from "@/assets/svg/calendar-icon.svg";
+//@ts-ignore
+import CardIcon from "@/assets/svg/card.bg.icon.svg";
 import Title from "antd/es/typography/Title";
 
 interface IStatistikaCard {
@@ -27,6 +29,8 @@ export const StatistikaCard = ({
         border: " 1px solid var(--qidiruv-tizimi-1)",
         borderRadius: "4px",
         width: "full",
+        backgroundImage: `${CardIcon}`,
+        backgroundPosition: "top",
       }}
     >
       <Col

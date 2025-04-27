@@ -1,17 +1,31 @@
-import { Button, Col, Pagination, Row, Spin } from "antd";
+import { Button, Col, Form, FormProps, Pagination, Row, Select } from "antd";
 import Title from "antd/es/typography/Title";
 //@ts-ignore
 import AddIconSvg from "@/assets/svg/add.icon.svg";
 //@ts-ignore
 import FilterSvg from "@/assets/svg/fillter.icon.svg";
+//@ts-ignore
+import CloseIcon from "@/assets/svg/close.icon.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useGetCourse } from "./service/query/useGetAllCourse";
+import { useGetCourse } from "./service/query/useGetAllCourseAll";
 import { CourseCard } from "./components/CourseCard";
+import LoadingSpinner from "@/components/CustomSpin/spin";
+import { useSearchStore } from "@/store/useSearchStore";
+interface FilterType {
+  status: string;
+}
 const Courses = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState<number>(1);
-  const { data, isLoading } = useGetCourse(page, 10);
+  const [isStatus, setStatus] = useState<string | undefined>(undefined);
+  const { search } = useSearchStore();
+  const { data, isLoading } = useGetCourse(page, 10, isStatus, search);
+  const [isFilter, setFilter] = useState(false);
+  const [form] = Form.useForm();
+  const onFinish: FormProps<FilterType>["onFinish"] = (values) => {
+    setStatus(values.status);
+  };
   return (
     <>
       <Row
@@ -37,7 +51,7 @@ const Courses = () => {
         </Title>
         <Row style={{ gap: "15px", alignItems: "center" }}>
           <Button
-            onClick={() => navigate("/group/create")}
+            onClick={() => navigate("/course/create")}
             style={{
               display: "flex",
               gap: "10px",
@@ -55,17 +69,143 @@ const Courses = () => {
             <img src={AddIconSvg} alt="" />
             Qo’shish
           </Button>
-          <Button
+          <Col
             style={{
-              padding: "18px 8px",
-              border: " 1px solid var(--qidiruv-tizimi-1)",
-              borderRadius: "4px",
-              boxShadow: "2px 2px 2px 0 rgba(0, 0, 0, 0.1)",
-              background: "var(--stroka-rang-2)",
+              position: "relative",
+              display: "inline-block",
             }}
           >
-            <img src={FilterSvg} alt="" />
-          </Button>
+            <Button
+              onClick={() => (isFilter ? setFilter(false) : setFilter(true))}
+              style={{
+                padding: "18px 8px",
+                border: " 1px solid var(--qidiruv-tizimi-1)",
+                borderRadius: "4px",
+                boxShadow: "2px 2px 2px 0 rgba(0, 0, 0, 0.1)",
+                background: "var(--stroka-rang-2)",
+              }}
+            >
+              <img src={FilterSvg} alt="" />
+            </Button>
+            {isFilter ? (
+              <Row
+                style={{
+                  position: "absolute",
+                  top: "170%",
+                  flexDirection: "column",
+                  right: 0,
+                  width: "190px",
+                  border: "1px solid var(--qidiruv-tizimi-1)",
+                  borderRadius: "4px",
+                  boxShadow: "2px 2px 4px 0 rgba(0, 0, 0, 0.1)",
+                  background: "var(--oq-rang-1)",
+                  zIndex: 999,
+                }}
+              >
+                <Row
+                  style={{
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    borderBottom: "2px solid var(--qidiruv-tizimi-1) ",
+                    padding: "10px",
+                  }}
+                >
+                  <Title
+                    level={2}
+                    style={{
+                      fontWeight: 600,
+                      fontSize: "24px",
+                      color: "var(--matn-rang-1)",
+                      fontFamily: "var(--font-family)",
+                      margin: 0,
+                    }}
+                  >
+                    Filtr
+                  </Title>
+                  <Col
+                    onClick={() => {
+                      setFilter(false);
+                    }}
+                  >
+                    <img src={CloseIcon} alt="" />
+                  </Col>
+                </Row>
+                <Col style={{ padding: "10px" }}>
+                  {" "}
+                  <Form
+                    form={form}
+                    name="nest-messages"
+                    layout="vertical"
+                    onFinish={onFinish}
+                    style={{ width: "100%", maxWidth: "full" }}
+                  >
+                    <Form.Item<FilterType> name="status">
+                      <Select
+                        style={{
+                          width: "100%",
+                          height: "33px",
+                          background: "transparent",
+                        }}
+                        placeholder={
+                          <span className="filter_form__span"> Holat</span>
+                        }
+                      >
+                        <Select.Option value="ACTIVE">
+                          <span style={{ color: "var(--breand-rang-2)" }}>
+                            ACTIVE
+                          </span>
+                        </Select.Option>
+                        <Select.Option value="INACTIVE">
+                          {" "}
+                          <span style={{ color: "var(--qizil-rang-1)" }}>
+                            INACTIVE
+                          </span>
+                        </Select.Option>
+                      </Select>
+                    </Form.Item>
+
+                    <Row style={{ gap: "5px" }}>
+                      <Button
+                        onClick={() => {
+                          form.resetFields();
+                        }}
+                        htmlType="submit"
+                        style={{
+                          width: "48%",
+                          height: "35px",
+                          border: "none",
+                          background: "var(--stroka-rang-2)",
+                          borderRadius: "4px",
+                          fontFamily: "var(--font-family)",
+                          fontWeight: 500,
+                          fontSize: "16px",
+                          color: "var(--qizil-rang-1)",
+                        }}
+                      >
+                        Tozalash
+                      </Button>
+                      <Button
+                        htmlType="submit"
+                        style={{
+                          width: "48%",
+                          height: "35px",
+                          background: "var(--breand-rang-2)",
+                          borderRadius: "4px",
+                          border: "none",
+                          fontFamily: "var(--font-family)",
+                          fontWeight: 500,
+                          fontSize: "16px",
+                          color: "var(--oq-rang-1)",
+                        }}
+                      >
+                        Saqlash
+                      </Button>
+                    </Row>
+                  </Form>
+                </Col>
+              </Row>
+            ) : null}
+          </Col>
         </Row>
       </Row>
       {isLoading ? (
@@ -76,7 +216,7 @@ const Courses = () => {
             justifyContent: "center",
           }}
         >
-          <Spin size="large" />
+          <LoadingSpinner />
         </Row>
       ) : (
         <Col style={{ padding: "20px 20px" }}>
@@ -84,7 +224,7 @@ const Courses = () => {
             style={{
               borderRadius: "4px",
               padding: "6px 40px ",
-              gap: "96px",
+              gap: "100px",
               marginBottom: "10px",
             }}
           >
@@ -106,7 +246,7 @@ const Courses = () => {
               ))}
             </Row>
             <Row style={{ gap: "250px" }}>
-              {["Davomiligi", "Daraja", "Imkonyatlar"].map((item, index) => (
+              {["Davomiligi", "Holati", "Imkonyatlar"].map((item, index) => (
                 <Title
                   key={index}
                   level={2}
@@ -133,6 +273,7 @@ const Courses = () => {
           >
             {data?.data.map((items, index) => (
               <CourseCard
+                courseId={items?.course_id}
                 key={index}
                 id={index + 1}
                 name={items?.name}

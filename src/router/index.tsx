@@ -13,6 +13,11 @@ import TeacherCreate from "@/pages/Admin/teacher-create/teacher-create";
 import GroupCreate from "@/pages/Admin/group-create/group-create";
 import Courses from "@/pages/Admin/courses/course";
 import NotFound from "@/pages/notfound/notfound";
+import CourseCreate from "@/pages/Admin/course-create/course-create";
+import StudentDiteil from "@/pages/Admin/student-diteil/student-diteil";
+import TeacherDiteil from "@/pages/Admin/teacher-diteil/teacher-diteil";
+import GroupDiteil from "@/pages/Admin/group-diteil/group-diteil";
+import CourseDiteil from "@/pages/Admin/course-diteil/course-diteil";
 
 export const routes: IRoutes[] = [
   {
@@ -61,6 +66,26 @@ export const routes: IRoutes[] = [
         {
           path: "/group/create",
           element: <GroupCreate />,
+        },
+        {
+          path: "/course/create",
+          element: <CourseCreate />,
+        },
+        {
+          path: "/student/:id",
+          element: <StudentDiteil />,
+        },
+        {
+          path: "/teacher/:id",
+          element: <TeacherDiteil />,
+        },
+        {
+          path: "/group/:id",
+          element: <GroupDiteil />,
+        },
+        {
+          path: "/course/:id",
+          element: <CourseDiteil />,
         },
         {
           path: "/*",

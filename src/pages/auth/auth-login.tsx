@@ -20,7 +20,6 @@ const AuthLogin = () => {
     }
   }, []);
   const { mutate, isPending } = usePostLogin();
-
   const [form] = Form.useForm();
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     mutate(
@@ -32,7 +31,6 @@ const AuthLogin = () => {
         },
         onError: (error: any) => {
           const errorMessage = error.response?.data?.message;
-          console.log(errorMessage);
           form.setFields([
             {
               name: "login",

@@ -24,6 +24,8 @@ import { menu, menuBootm, SelectedKeys } from "./components/layout.menu";
 import Title from "antd/es/typography/Title";
 import { useGetAmdinProfile } from "./service/query/useGetAmdinProfile";
 import { useAuthStore } from "@/store/useAtuhStore";
+import { useSearchStore } from "@/store/useSearchStore";
+import LoadingPage from "@/components/CustomLoadingPage/CustmLoadingPage";
 const { Header, Sider, Content } = Layout;
 
 const AdminLayout = () => {
@@ -32,6 +34,7 @@ const AdminLayout = () => {
   const handleLogoutClick = () => {
     setModal2Open(true);
   };
+  const { setSearch } = useSearchStore();
   const navigate = useNavigate();
   const { loOut } = useAuthStore((state) => state);
   const logout = () => {
@@ -41,7 +44,12 @@ const AdminLayout = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const { data } = useGetAmdinProfile();
+  const Search = (value: string) => {
+    setSearch({ name: value });
+    console.log(value);
+  };
+  const { data, isLoading } = useGetAmdinProfile();
+  if (isLoading) return <LoadingPage />;
   const path = useLocation().pathname.split("/")[1];
   const select = path ? SelectedKeys[path] : 1;
   return (
@@ -121,7 +129,7 @@ const AdminLayout = () => {
               <Input
                 style={{
                   maxWidth: "210px",
-                  padding: " 6px 60px 6px 15px",
+                  padding: " 6px 10px 6px 15px",
                   border: "1px solid var(--qidiruv-tizimi-1)",
                   borderRadius: "4px",
                   boxShadow: "2px 2px 2px 0 rgba(0, 0, 0, 0.1)",
@@ -130,6 +138,7 @@ const AdminLayout = () => {
                   fontWeight: 900,
                   fontSize: "16px",
                 }}
+                onChange={(e) => Search(e.target.value)}
                 placeholder="Qidiruv tizimi..."
                 prefix={<img width={24} height={24} src={SearchIcon} />}
               />
@@ -177,7 +186,7 @@ const AdminLayout = () => {
                   }}
                 >
                   {" "}
-                  Foydalanuvchi
+                  ADMIN
                 </Title>
               </Col>
             </Row>

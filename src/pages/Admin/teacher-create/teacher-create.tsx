@@ -84,13 +84,11 @@ const TeacherCreate = () => {
         form.resetFields();
         setFileList([]);
       },
-      onError: (err) => {
+      onError: (err: any) => {
         api.error({
           message: `Bekor qilindi!`,
-          description:
-            "Tizimidagi jadvalni to’ldirish muvaffaqiyatsiz bajarildi",
+          description: `Tizimidagi jadvalni to’ldirish muvaffaqiyatsiz bajarildi ${err?.response?.data?.message}`,
         });
-        console.log(err);
       },
     });
   };

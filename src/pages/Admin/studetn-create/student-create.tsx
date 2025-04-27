@@ -23,7 +23,7 @@ import OkIconSvg from "@/assets/svg/create.ok.icon.svg";
 //@ts-ignore
 import NoIconSvg from "@/assets/svg/create.no.icon.svg";
 import { useState } from "react";
-import { useGetAllGroup } from "../groups/service/query/useGetAllGroup";
+import { useGetAllGroup } from "../groups/service/query/useGetGroupFilter";
 import { useUploadImgStudent } from "./service/mutation/usePostStudentUploadIng";
 import { usePostCreateStudent } from "./service/mutation/usePostStudentCreate";
 import { Dayjs } from "dayjs";
@@ -50,7 +50,7 @@ const StudentCreate = () => {
     useUploadImgStudent();
   const { mutate: createStudent, isPending: createStudentPading } =
     usePostCreateStudent();
-  const { data: groupData } = useGetAllGroup(1,100);
+  const { data: groupData } = useGetAllGroup(1, 100);
   const changeUpload: UploadProps["onChange"] = ({ file }) => {
     if (file.originFileObj && !createImgPeading) {
       uploadMutate(file.originFileObj, {
@@ -68,7 +68,6 @@ const StudentCreate = () => {
     }
   };
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log(values.gender);
     const StudentData = {
       img_url: fileList[0].url,
       full_name: `${values.lastname} ${values.firstname} ${values.surname}`,
@@ -92,13 +91,11 @@ const StudentCreate = () => {
         form.resetFields();
         setFileList([]);
       },
-      onError: (err) => {
+      onError: (err: any) => {
         api.error({
           message: `Bekor qilindi!`,
-          description:
-            "Tizimidagi jadvalni to’ldirish muvaffaqiyatsiz bajarildi",
+          description: `Tizimidagi jadvalni to’ldirish muvaffaqiyatsiz bajarildi ${err?.response?.data?.message}`,
         });
-        console.log(err);
       },
     });
   };
@@ -334,7 +331,7 @@ const StudentCreate = () => {
                 }}
               >
                 {groupData?.data.map((Item) => (
-                  <Select.Option value={Item?.group_id}>
+                  <Select.Option key={Item.group_id} value={Item?.group_id}>
                     {Item?.name}
                   </Select.Option>
                 ))}

@@ -11,6 +11,7 @@ import EditIconSvg from "@/assets/svg/edit.icon.svg";
 import DeleteIconSvg from "@/assets/svg/delete.icon.svg";
 import { useState } from "react";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 
 export interface IStudentCard {
   id: number;
@@ -23,6 +24,7 @@ export interface IStudentCard {
   indexItem: number;
   paymentType: string;
   sum: number;
+  user_id: string;
 }
 
 export const StudentCard = ({
@@ -36,7 +38,9 @@ export const StudentCard = ({
   indexItem,
   paymentType,
   sum,
+  user_id,
 }: IStudentCard) => {
+  const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   return (
     <Row
@@ -185,10 +189,11 @@ export const StudentCard = ({
                     },
                     { "To’lov": paymentType === "CASH" ? "NAQD" : "KARTA" },
                     { Summa: sum },
-                  ].map((item) => {
+                  ].map((item, index) => {
                     const [key, value] = Object.entries(item)[0];
                     return (
                       <Title
+                        key={index}
                         level={2}
                         style={{
                           fontWeight: 600,
@@ -208,6 +213,7 @@ export const StudentCard = ({
             ) : null}
           </Col>
           <Button
+            onClick={() => navigate(`/student/${user_id}`)}
             style={{
               border: "none",
               background: "var(--breand-rang-2)",

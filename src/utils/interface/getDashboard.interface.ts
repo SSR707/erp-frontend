@@ -13,6 +13,7 @@ export interface IGetDashboard {
       percent: number;
     };
     studentCount: number;
+    userCount: number;
     ageStats: Record<string, number>;
   };
 }
@@ -30,7 +31,6 @@ interface IUser {
   updated_at: string;
   user_id: string;
   images: IImages[];
-  
 }
 
 export interface IImages {

@@ -1,6 +1,7 @@
 import { Button, Row, Tag } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import Title from "antd/es/typography/Title";
+import { useNavigate } from "react-router-dom";
 
 export interface ICourseCard {
   id: number;
@@ -8,6 +9,7 @@ export interface ICourseCard {
   status: string;
   duration: string;
   indexItem: number;
+  courseId?: string;
 }
 
 export const CourseCard = ({
@@ -15,8 +17,10 @@ export const CourseCard = ({
   name,
   status,
   duration,
+  courseId,
   indexItem,
 }: ICourseCard) => {
+  const navigate = useNavigate();
   return (
     <Row
       style={{
@@ -85,6 +89,7 @@ export const CourseCard = ({
             </Row>
 
             <Button
+              onClick={() => navigate(`/course/${courseId}`)}
               style={{
                 border: "none",
                 background: "var(--breand-rang-2)",

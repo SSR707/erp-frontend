@@ -2,12 +2,10 @@ import { instance } from "@/config/AxiosInstance";
 import { IGetCourseInterface } from "@/utils/interface/getCourser.interface";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetCourse = (page: number, limit: number) => {
+export const useGetCourseAll = () => {
   return useQuery({
-    queryKey: ["course", page, limit],
+    queryKey: ["course_all"],
     queryFn: () =>
-      instance
-        .get<IGetCourseInterface>(`/courses?page=${page}&limit=${limit}`)
-        .then((res) => res.data),
+      instance.get<IGetCourseInterface>(`/courses/all`).then((res) => res.data),
   });
 };

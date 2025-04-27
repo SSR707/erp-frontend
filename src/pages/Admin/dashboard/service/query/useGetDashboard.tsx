@@ -2,7 +2,7 @@ import { instance } from "@/config/AxiosInstance";
 import { IGetDashboard } from "@/utils/interface/getDashboard.interface";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetDashboard = (fullname: string, category: string) => {
+export const useGetDashboard = (fullname: string | undefined, category: string) => {
   return useQuery({
     queryKey: ["dashboard", fullname, category],
     queryFn: () =>

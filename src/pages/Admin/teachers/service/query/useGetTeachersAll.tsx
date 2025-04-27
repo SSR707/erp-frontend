@@ -2,12 +2,12 @@ import { instance } from "@/config/AxiosInstance";
 import { IGetTeachersInterface } from "@/utils/interface/getTeachers.interface";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetTeachers = (page: number, limit: number) => {
+export const useGetTeachersAll = () => {
   return useQuery({
-    queryKey: ["teachers"],
+    queryKey: ["teachers_all"],
     queryFn: () =>
       instance
-        .get<IGetTeachersInterface>(`/teacher?page=${page}&limit=${limit}`)
+        .get<IGetTeachersInterface>(`/teacher/for-group`)
         .then((res) => res.data),
   });
 };

@@ -1,4 +1,4 @@
-import { Button, Col, Dropdown, MenuProps, Row, Spin } from "antd";
+import { Button, Col, Dropdown, MenuProps, Row } from "antd";
 import Title from "antd/es/typography/Title";
 import { useState } from "react";
 // @ts-ignore
@@ -15,6 +15,8 @@ import { StatistikaCard } from "./components/StatistikaCard";
 import { useGetDashboard } from "./service/query/useGetDashboard";
 import TodayArrivedStudentsComponents from "./components/TodayArrivedStudentsComponents";
 import AgeDistributionComponents from "./components/AgeDistributionComponents";
+import { useSearchStore } from "@/store/useSearchStore";
+import LoadingSpinner from "@/components/CustomSpin/spin";
 
 const items: MenuProps["items"] = [
   {
@@ -33,9 +35,9 @@ const items: MenuProps["items"] = [
 
 const Dashboard = () => {
   const [category, setCategory] = useState("Hamma");
-
+  const { search } = useSearchStore();
   const { data, isLoading } = useGetDashboard(
-    "",
+    search,
     category === "Hamma"
       ? ""
       : category === "O’qituvchilar"
@@ -44,6 +46,7 @@ const Dashboard = () => {
       ? "STUDENT"
       : ""
   );
+  console.log(data, "Dasgboard");
   return (
     <>
       <Col
@@ -103,14 +106,14 @@ const Dashboard = () => {
                 }}
               >
                 {" "}
-                O’qituvchilar soni:{" "}
+                {category} soni:{" "}
                 <span
                   style={{
                     fontSize: "22px",
                     color: "var(--breand-rang-1)",
                   }}
                 >
-                  {data?.data?.studentCount}
+                  {data?.data?.userCount} ta
                 </span>
               </Title>
 
@@ -229,7 +232,7 @@ const Dashboard = () => {
                     height: "225px",
                   }}
                 >
-                  <Spin />
+                  <LoadingSpinner />
                 </Col>
               ) : (
                 <Col

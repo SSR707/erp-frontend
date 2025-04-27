@@ -10,6 +10,7 @@ import EditIconSvg from "@/assets/svg/edit.icon.svg";
 //@ts-ignore
 import DeleteIconSvg from "@/assets/svg/delete.icon.svg";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 
 export interface IGroupCard {
   id: number;
@@ -17,6 +18,7 @@ export interface IGroupCard {
   status: string;
   startDate: string;
   indexItem: number;
+  groupId?: string;
 }
 
 export const GroupCard = ({
@@ -25,7 +27,9 @@ export const GroupCard = ({
   status,
   startDate,
   indexItem,
+  groupId,
 }: IGroupCard) => {
+  const navigate = useNavigate();
   return (
     <Row
       style={{
@@ -92,6 +96,7 @@ export const GroupCard = ({
             </Row>
 
             <Button
+              onClick={() => navigate(`/group/${groupId}`)}
               style={{
                 border: "none",
                 background: "var(--breand-rang-2)",

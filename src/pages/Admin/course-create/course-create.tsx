@@ -1,15 +1,4 @@
-import {
-  Button,
-  Col,
-  FormProps,
-  Row,
-  Form,
-  Input,
-  DatePicker,
-  notification,
-  Select,
-  Avatar,
-} from "antd";
+import { Button, Col, FormProps, Row, Form, Input, notification } from "antd";
 import Title from "antd/es/typography/Title";
 import "./css/style.css";
 //@ts-ignore
@@ -20,35 +9,26 @@ import FileUploadIconSvg from "@/assets/svg/file-upload.icon.svg";
 import OkIconSvg from "@/assets/svg/create.ok.icon.svg";
 //@ts-ignore
 import NoIconSvg from "@/assets/svg/create.no.icon.svg";
-import { Dayjs } from "dayjs";
 import { useNavigate } from "react-router-dom";
-import { usePostGroupCreate } from "./service/mutation/usePostGroupCreate";
-import { useGetTeachersAll } from "../teachers/service/query/useGetTeachersAll";
-import { useGetCourseAll } from "../courses/service/query/useGetCoursesAll";
-type FieldType = {
+import { usePostCourseCreate } from "./service/mutation/usePostCourseCreate";
+export type FieldType = {
   name: string;
-  courseId: string;
-  start_date: Dayjs;
-  teacherId: string;
+  duration: string;
 };
 
-const GroupCreate = () => {
+const CourseCreate = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
-  const { mutate: createGroup, isPending } = usePostGroupCreate();
-  const { data: CourseData } = useGetCourseAll();
-  const { data: TeacherData } = useGetTeachersAll();
+  const { mutate: CreateCourse, isPending } = usePostCourseCreate();
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    const GroupData = {
+    const CourseData = {
       name: values.name.trim(),
-      course_id: values.courseId,
-      teacher_id: values.teacherId,
-      start_date: values.start_date.format("YYYY-MM-DD"),
+      duration: +values.duration,
       description: "bu guruh yaxshi guruh",
       status: "ACTIVE",
     };
-    createGroup(GroupData, {
+    CreateCourse(CourseData, {
       onSuccess: () => {
         api.success({
           message: `Ajoyib natija`,
@@ -88,11 +68,11 @@ const GroupCreate = () => {
           }}
         >
           {" "}
-          Group qo’shish
+          Krus qo’shish
         </Title>
         <Row style={{ gap: "15px", alignItems: "center" }}>
           <Button
-            onClick={() => navigate("/groups")}
+            onClick={() => navigate("/courses")}
             style={{
               display: "flex",
               gap: "10px",
@@ -137,7 +117,7 @@ const GroupCreate = () => {
           form={form}
           name="nest-messages"
           layout="vertical"
-          className="group-create-form"
+          className="course-create-form"
           onFinish={onFinish}
           style={{ width: "100%", maxWidth: "full" }}
         >
@@ -154,10 +134,9 @@ const GroupCreate = () => {
             >
               <Input className="form_input" />
             </Form.Item>
-
             <Form.Item<FieldType>
-              label={<span className="form_label__title">Boshlangan sana</span>}
-              name="start_date"
+              label={<span className="form_label__title">Davomiligi</span>}
+              name="duration"
               rules={[
                 {
                   required: true,
@@ -165,71 +144,7 @@ const GroupCreate = () => {
                 },
               ]}
             >
-              <DatePicker className="form_input" />
-            </Form.Item>
-            <Form.Item<FieldType>
-              label={<span className="form_label__title">Course</span>}
-              name="courseId"
-              rules={[
-                {
-                  required: true,
-                  message: "",
-                },
-              ]}
-            >
-              <Select
-                style={{
-                  width: "199px",
-                  height: "45px",
-                  background: "transparent",
-                }}
-              >
-                {CourseData?.data.map((Item, index) => (
-                  <Select.Option key={index} value={Item?.course_id}>
-                    {Item?.name}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <Form.Item<FieldType>
-              label={
-                <span className="form_label__title">O'qtuvchi biriktirish</span>
-              }
-              name="teacherId"
-              rules={[
-                {
-                  required: true,
-                  message: "",
-                },
-              ]}
-            >
-              <Select
-                showSearch
-                placeholder="Ustoz ismini kiriting"
-                style={{
-                  width: "330px",
-                  height: "45px",
-                  background: "transparent",
-                }}
-                optionFilterProp="label"
-                filterOption={(input, option) =>
-                  typeof option?.label === "string" &&
-                  option.label.toLowerCase().includes(input.toLowerCase())
-                }
-              >
-                {TeacherData?.data.map((Item) => (
-                  <Select.Option
-                    key={Item?.user_id}
-                    label={Item?.full_name}
-                    value={Item?.user_id}
-                  >
-                    <Row style={{ alignItems: "center", gap: "5px" }}>
-                      <Avatar src={Item?.images[0]?.url} />
-                      {Item?.full_name}
-                    </Row>
-                  </Select.Option>
-                ))}
-              </Select>
+              <Input className="form_input" />
             </Form.Item>
           </Row>
         </Form>
@@ -238,4 +153,4 @@ const GroupCreate = () => {
   );
 };
 
-export default GroupCreate;
+export default CourseCreate;
