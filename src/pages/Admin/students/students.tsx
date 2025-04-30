@@ -380,9 +380,9 @@ const Students = () => {
           >
             {data?.data.map((items, index) => (
               <StudentCard
-                key={items.user_id}
+                key={items?.user_id}
                 id={(page - 1) * 10 + index + 1}
-                user_id={items.user_id}
+                user_id={items?.user_id}
                 avatar={items?.images[0]?.url}
                 fullname={items?.full_name}
                 birthDate={items?.data_of_birth}
@@ -390,8 +390,8 @@ const Students = () => {
                 group={items?.group_members[0]?.group.name}
                 indexItem={index}
                 attendance={true}
-                paymentType={items?.PaymentForStudent[items.PaymentForStudent.length - 1].type}
-                sum={items?.PaymentForStudent[items.PaymentForStudent.length - 1].sum}
+                paymentType={items?.PaymentForStudent[items.PaymentForStudent.length - 1]?.type}
+                sum={items?.PaymentForStudent[items.PaymentForStudent.length - 1]?.sum}
               />
             ))}
           </Col>
