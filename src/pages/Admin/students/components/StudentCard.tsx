@@ -22,8 +22,8 @@ export interface IStudentCard {
   group: string;
   gender: string;
   indexItem: number;
-  paymentType: string;
-  sum: number;
+  paymentType: string | undefined ;
+  sum: number | undefined;
   user_id: string;
 }
 

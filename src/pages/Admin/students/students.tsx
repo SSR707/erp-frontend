@@ -390,8 +390,16 @@ const Students = () => {
                 group={items?.group_members[0]?.group.name}
                 indexItem={index}
                 attendance={true}
-                paymentType={items?.PaymentForStudent[items.PaymentForStudent.length - 1]?.type}
-                sum={items?.PaymentForStudent[items.PaymentForStudent.length - 1]?.sum}
+                paymentType={
+                  items?.PaymentForStudent && items.PaymentForStudent.length > 0
+                    ? items.PaymentForStudent[items.PaymentForStudent.length - 1]?.type
+                    : undefined
+                }
+                sum={
+                  items?.PaymentForStudent && items.PaymentForStudent.length > 0
+                    ? items.PaymentForStudent[items.PaymentForStudent.length - 1]?.sum
+                    : undefined
+                }
               />
             ))}
           </Col>
@@ -406,7 +414,7 @@ const Students = () => {
               align="center"
               className="custom-pagination"
               defaultCurrent={1}
-              total={data?.meta.studentCount}
+              total={data?.meta?.studentCount}
               onChange={(page: number) => {
                 setPage(page);
               }}
