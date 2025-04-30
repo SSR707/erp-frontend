@@ -44,6 +44,7 @@ export interface IGroup {
   course_id: string;
   teacher_id: string;
   status: string;
+  start_date: string;
   created_at: string;
   updated_at: string;
 }
@@ -51,4 +52,5 @@ export interface IGroup {
 export interface IPaymentForStudent {
   type: string;
   sum: number;
+  created_at: string;
 }

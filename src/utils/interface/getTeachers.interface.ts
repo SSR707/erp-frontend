@@ -1,4 +1,5 @@
 import { IImages } from "./getDashboard.interface";
+import { IGroup } from "./getStudent.interface";
 
 export interface IGetTeachersInterface {
   status: number;
@@ -20,8 +21,16 @@ export interface ITeacher {
   updated_at: string;
   user_id: string;
   images: IImages[];
+  groups: IGroup[];
+  PaymentForTeacher: IPaymentForTeacher[];
 }
 
 export interface IMeta {
   teacherCount: number;
+}
+
+export interface IPaymentForTeacher {
+  type: string;
+  sum: number;
+  created_at: string;
 }

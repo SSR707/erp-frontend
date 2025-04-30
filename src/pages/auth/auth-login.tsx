@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import SvgRainBackground from "@/components/SvgRainBackground/SvgRainBackground";
 import { Form, Input, Button, Col } from "antd";
 import type { FormProps } from "antd";
 import { useAuthStore } from "@/store/useAtuhStore";
@@ -46,94 +47,113 @@ const AuthLogin = () => {
     );
   };
   return (
-    <Col
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Title
-        level={2}
+    <>
+      <SvgRainBackground />
+      <Col
         style={{
-          fontWeight: 500,
-          fontSize: "32px",
-          color: "#0e1427",
-          marginBottom: "48px",
-          textAlign: "center",
-          fontFamily: "var(--second-family)",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "relative",
+          zIndex: 101,
         }}
       >
-        {" "}
-        Tizimga kirish
-      </Title>
-      <Form
-        form={form}
-        name="basic"
-        style={{ width: 450 }}
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        autoComplete="off"
-        layout="vertical"
-      >
-        <Form.Item<FieldType>
-          name="login"
-          rules={[{ required: true, message: "Iltimos login ni kiriting !" }]}
+        <Col
+          style={{
+            padding: "35px 35px 25px 35px",
+            borderRadius: "20px",
+            boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
+            position: "relative",
+            zIndex: 102,
+          }}
         >
-          <Input
+          <Title
+            level={2}
             style={{
-              padding: "10px 5px",
-              borderBottom: "1px solid #7D41ED",
-              fontWeight: "400",
-              fontSize: "16px",
-            }}
-            variant="underlined"
-            placeholder="Login"
-          />
-        </Form.Item>
-
-        <Form.Item<FieldType>
-          name="password"
-          rules={[{ required: true, message: "Iltimos parol ni kiriting !" }]}
-        >
-          <Input.Password
-            style={{
-              padding: "10px 5px",
-              borderBottom: "1px solid #7D41ED",
-              fontWeight: "400",
-              fontSize: "16px",
-            }}
-            variant="underlined"
-            placeholder="Parol"
-          />
-        </Form.Item>
-
-        <Form.Item label={null}>
-          <Button
-            loading={isPending}
-            type="primary"
-            htmlType="submit"
-            style={{
-              fontFamily: "var(--second-family)",
-              padding: "25px 30px",
-              borderRadius: "10px",
-              background: "#7D41ED",
-              width: "100%",
-              fontSize: "18px",
               fontWeight: 500,
-              lineHeight: "133%",
+              fontSize: "32px",
+              color: "#0e1427",
+              marginBottom: "48px",
               textAlign: "center",
-              color: "var(--oq-rang-1)",
-              marginTop: "20px",
+              fontFamily: "var(--second-family)",
             }}
           >
-            Kirish
-          </Button>
-        </Form.Item>
-      </Form>
-    </Col>
+            {" "}
+            Tizimga kirish
+          </Title>
+          <Form
+            form={form}
+            name="basic"
+            style={{ width: 450 }}
+            initialValues={{ remember: true }}
+            onFinish={onFinish}
+            autoComplete="off"
+            layout="vertical"
+          >
+            <Form.Item<FieldType>
+              name="login"
+              rules={[
+                { required: true, message: "Iltimos login ni kiriting !" },
+              ]}
+            >
+              <Input
+                style={{
+                  padding: "10px 5px",
+                  borderBottom: "1px solid var(--breand-rang-1)",
+                  fontWeight: "400",
+                  fontSize: "16px",
+                }}
+                variant="underlined"
+                placeholder="Login"
+              />
+            </Form.Item>
+
+            <Form.Item<FieldType>
+              name="password"
+              rules={[
+                { required: true, message: "Iltimos parol ni kiriting !" },
+              ]}
+            >
+              <Input.Password
+                style={{
+                  padding: "10px 5px",
+                  borderBottom: "1px solid var(--breand-rang-1)",
+                  fontWeight: "400",
+                  fontSize: "16px",
+                }}
+                variant="underlined"
+                placeholder="Parol"
+              />
+            </Form.Item>
+
+            <Form.Item label={null}>
+              <Button
+                loading={isPending}
+                type="primary"
+                htmlType="submit"
+                style={{
+                  fontFamily: "var(--second-family)",
+                  padding: "25px 30px",
+                  borderRadius: "10px",
+                  background: "var(--breand-rang-1)",
+                  width: "100%",
+                  fontSize: "18px",
+                  fontWeight: 500,
+                  lineHeight: "133%",
+                  textAlign: "center",
+                  color: "var(--oq-rang-1)",
+                  marginTop: "20px",
+                }}
+              >
+                Kirish
+              </Button>
+            </Form.Item>
+          </Form>
+        </Col>
+      </Col>
+    </>
   );
 };
 

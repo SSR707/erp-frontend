@@ -312,33 +312,6 @@ const TeacherCreate = () => {
             </Col>
           </Row>
           <Row style={{ gap: "25px" }}>
-            {/* <Form.Item<FieldType>
-              label={<span className="form_label__title">To’lov</span>}
-              name="paymentType"
-            >
-              <Select
-                style={{
-                  width: "199px",
-                  height: "45px",
-                  background: "transparent",
-                }}
-              >
-                <Select.Option value="CASH">NQAD</Select.Option>
-                <Select.Option value="CREDIT_CARD"> KARTA</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item<FieldType>
-              label={<span className="form_label__title">To’lov summa</span>}
-              name="sum"
-              rules={[
-                {
-                  required: true,
-                  message: "",
-                },
-              ]}
-            >
-              <Input className="form_input" />
-            </Form.Item> */}
             <Form.Item<FieldType>
               label={<span className="form_label__title">Tel raqami</span>}
               name="phone_number"

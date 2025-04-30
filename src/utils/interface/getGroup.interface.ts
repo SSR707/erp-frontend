@@ -11,7 +11,7 @@ export interface IGroup {
   course_id: string;
   teacher_id: string;
   status: string;
-  startDate: string;
+  start_date: string;
   created_at: string;
   updated_at: string;
 }

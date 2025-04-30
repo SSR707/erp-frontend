@@ -1,0 +1,30 @@
+.rain-background {
+  position: absolute;
+  bottom: 0; /* Start from bottom of the screen */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.svg-drop {
+  position: absolute;
+  animation: fallUp linear infinite;
+  opacity: 0.8;
+  z-index: 2;
+  animation-timing-function: linear;
+  transform: scale(0.8); /* Slightly smaller at start */
+}
+
+@keyframes fallUp {
+  0% {
+    transform: translateY(100vh) scale(0.8); /* Start below the screen */
+    opacity: 0.7; /* Slightly transparent at start */
+  }
+  100% {
+    transform: translateY(-100px) scale(1); /* End above the screen, normal size */
+    opacity: 1; /* Full opacity at the top */
+  }
+}

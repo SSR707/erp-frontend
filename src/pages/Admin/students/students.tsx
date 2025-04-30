@@ -16,13 +16,13 @@ import FilterSvg from "@/assets/svg/fillter.icon.svg";
 //@ts-ignore
 import CloseIcon from "@/assets/svg/close.icon.svg";
 import { StudentCard } from "./components/StudentCard";
-import useGetAllStudent from "./service/query/useGetAllStudent";
+import useGetAllStudent from "./service/query/useGetAllStudentFilter";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useGetAllGroup } from "../groups/service/query/useGetGroupFilter";
 import { useSearchStore } from "@/store/useSearchStore";
 import LoadingSpinner from "@/components/CustomSpin/spin";
 import { Dayjs } from "dayjs";
+import { useGetGroupAll } from "../groups/service/query/useGetGroupAll";
 interface FilterType {
   birthDate: Dayjs;
   gender: string;
@@ -48,7 +48,7 @@ const Students = () => {
   );
   const [isFilter, setFilter] = useState(false);
   const [form] = Form.useForm();
-  const { data: groupData } = useGetAllGroup(1, 100);
+  const { data: groupData } = useGetGroupAll();
   const onFinish: FormProps<FilterType>["onFinish"] = (values) => {
     setFilterQuery({
       data_of_birth: values.birthDate
@@ -390,8 +390,8 @@ const Students = () => {
                 group={items?.group_members[0]?.group.name}
                 indexItem={index}
                 attendance={true}
-                paymentType={items?.PaymentForStudent[0].type}
-                sum={items?.PaymentForStudent[0].sum}
+                paymentType={items?.PaymentForStudent[items.PaymentForStudent.length - 1].type}
+                sum={items?.PaymentForStudent[items.PaymentForStudent.length - 1].sum}
               />
             ))}
           </Col>

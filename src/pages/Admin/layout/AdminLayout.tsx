@@ -49,6 +49,7 @@ const AdminLayout = () => {
     console.log(value);
   };
   const { data, isLoading } = useGetAmdinProfile();
+  console.log(data);
   if (isLoading) return <LoadingPage />;
   const path = useLocation().pathname.split("/")[1];
   const select = path ? SelectedKeys[path] : 1;
@@ -160,7 +161,7 @@ const AdminLayout = () => {
               >
                 <img src={NotificationIcon} width={24} height={24} alt="" />
               </Button>
-              <Avatar src={data?.data?.images[1]?.url} alt="Logo" size={38} />
+              <Avatar src={data?.data?.images[0]?.url} alt="Logo" size={38} />
               <Col>
                 <Title
                   level={3}

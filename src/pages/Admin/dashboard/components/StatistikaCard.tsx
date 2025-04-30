@@ -29,8 +29,9 @@ export const StatistikaCard = ({
         border: " 1px solid var(--qidiruv-tizimi-1)",
         borderRadius: "4px",
         width: "full",
-        backgroundImage: `${CardIcon}`,
-        backgroundPosition: "top",
+        backgroundImage: `url(${CardIcon})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "90% 25%",
       }}
     >
       <Col

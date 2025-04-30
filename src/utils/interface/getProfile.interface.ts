@@ -12,4 +12,8 @@ export interface IUserProfile {
   username: string;
   role: string;
   images: IImages[];
+  phone_number: string;
+  gender: string;
+  data_of_birth: string;
+  address: string;
 }

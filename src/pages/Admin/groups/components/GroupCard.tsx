@@ -29,13 +29,14 @@ export const GroupCard = ({
   indexItem,
   groupId,
 }: IGroupCard) => {
+
   const navigate = useNavigate();
   return (
     <Row
       style={{
         boxShadow: " 2px 2px 4px 0 rgba(0, 0, 0, 0.1)",
         background: "var(--oq-rang-1)",
-
+        
         borderRadius: "4px",
         padding: "15px 40px",
       }}

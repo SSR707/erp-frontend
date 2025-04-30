@@ -21,6 +21,7 @@ import { GroupCard } from "./components/GroupCard";
 import { useState } from "react";
 import LoadingSpinner from "@/components/CustomSpin/spin";
 import { Dayjs } from "dayjs";
+import { useSearchStore } from "@/store/useSearchStore";
 interface FilterType {
   start_date: Dayjs;
   status: string;
@@ -32,8 +33,15 @@ interface IFilter {
 const Groups = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState<number>(1);
+  const { search } = useSearchStore();
   const [isFilterQuery, setFilterQuery] = useState<IFilter | null>(null);
-  const { data, isLoading } = useGetAllGroup(page, 10);
+  const { data, isLoading } = useGetAllGroup(
+    page,
+    10,
+    isFilterQuery?.status,
+    isFilterQuery?.start_date,
+    search
+  );
   const [isFilter, setFilter] = useState(false);
   const [form] = Form.useForm();
   const onFinish: FormProps<FilterType>["onFinish"] = (values) => {
@@ -297,11 +305,11 @@ const Groups = () => {
           >
             {data?.data.map((items, index) => (
               <GroupCard
-              groupId={items?.group_id}
+                groupId={items?.group_id}
                 key={items?.group_id}
                 id={index + 1}
                 name={items?.name}
-                startDate={items?.startDate}
+                startDate={items?.start_date}
                 status={items?.status}
                 indexItem={index}
               />
