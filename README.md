@@ -10,24 +10,25 @@ A modern ERP + LMS system designed to manage educational center operations — i
 
 Use test login to access the system.
 
-| 🔐 Login  | 🔑 Password   |
-|----------|---------------|
-| Admin01  | Admin01!A     |
+| 🔐 Login | 🔑 Password |
+| -------- | ----------- |
+| Admin01  | Admin01!A   |
 
 ## 👤 Access Information
 
 > 🧪 Test Admin Login
-
 
 ---
 
 ## 🚀 Features
 
 ### 📊 Dashboard
+
 - Overview of statistics: income, expenses, total students & teachers
 - Filtered charts and summary data
 
 ### 👨‍🎓 Students
+
 - List of all students with latest payment status
 - Filter & search functionality
 - Add new student
@@ -38,6 +39,7 @@ Use test login to access the system.
   - Edit or delete profile
 
 ### 👨‍🏫 Teachers
+
 - List of all teachers with filters & search
 - Add new teacher
 - Teacher details:
@@ -47,6 +49,7 @@ Use test login to access the system.
   - Edit or delete profile
 
 ### 👥 Groups
+
 - View and create groups
 - Filter & search groups
 - Group details:
@@ -55,12 +58,14 @@ Use test login to access the system.
   - Assign students to groups
 
 ### 📚 Courses
+
 - List, create, filter, and search courses
 - Course details:
   - Linked groups
   - Edit or delete course
 
 ### 🙍‍♂️ Admin Profile
+
 - View and edit profile information
 - Change password
 
@@ -99,6 +104,8 @@ VITE_DEV_URL=http://localhost:4000/api/v1
 
 # 5. Start the development server
 npm run dev
+
+```
 
 ## 🛡️ Roles & Access
 
@@ -141,4 +148,3 @@ Built and maintained by [**SSR707**](https://github.com/SSR707)
 📧 Contact: _Coming soon..._
 
 ---
-
