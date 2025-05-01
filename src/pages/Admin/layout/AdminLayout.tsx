@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import {
   Avatar,
@@ -161,7 +161,15 @@ const AdminLayout = () => {
               >
                 <img src={NotificationIcon} width={24} height={24} alt="" />
               </Button>
-              <Avatar src={data?.data?.images[0]?.url} alt="Logo" size={38} />
+              <Avatar
+                src={
+                  data?.data?.images[0]?.url
+                    ? data?.data?.images[0]?.url
+                    : "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740"
+                }
+                alt="Logo"
+                size={38}
+              />
               <Col>
                 <Title
                   level={3}

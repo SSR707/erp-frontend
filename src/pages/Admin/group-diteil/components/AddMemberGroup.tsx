@@ -180,7 +180,7 @@ const AddMemberGroup = ({ group_id, isOpen, setIsOpen }: IProp) => {
                       value={Item?.user_id}
                     >
                       <Row style={{ alignItems: "center", gap: "5px" }}>
-                        <Avatar src={Item?.images[0]?.url} />
+                        <Avatar src={Item?.images[0]?.url ? Item?.images[0]?.url: "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740" } />
                         {Item?.full_name}
                       </Row>
                     </Select.Option>

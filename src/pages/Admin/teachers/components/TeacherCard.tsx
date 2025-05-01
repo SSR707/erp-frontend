@@ -67,7 +67,13 @@ export const TeacherCard = ({
             {id}
           </Title>
           <Row style={{ gap: "10px", alignItems: "center" }}>
-            <Avatar src={avatar} />
+            <Avatar
+              src={
+                avatar
+                  ? avatar
+                  : "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740"
+              }
+            />
             <Title
               level={2}
               style={{

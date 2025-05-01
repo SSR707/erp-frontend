@@ -79,9 +79,9 @@ const ProfileUpdateModal = ({ id, isOpen, setIsOpen }: IProp) => {
         firstname: data?.data?.full_name.split(" ")[1],
         lastname: data?.data?.full_name.split(" ")[0],
         surname:
-          data?.data?.full_name.split(" ")[2] +
+          data?.data?.full_name.split(" ")[2] ?? ''  +
           " " +
-          data?.data?.full_name.split(" ")[3],
+          data?.data?.full_name.split(" ")[3] ?? '' ,
         gender: data?.data?.gender,
         address: data?.data?.address,
         phone_number: data?.data?.phone_number,
