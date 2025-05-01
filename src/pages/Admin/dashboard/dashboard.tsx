@@ -46,7 +46,6 @@ const Dashboard = () => {
       ? "STUDENT"
       : ""
   );
-  console.log(data, "Dasgboard");
   return (
     <>
       <Col

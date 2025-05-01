@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import {
   Avatar,
@@ -49,7 +49,7 @@ const AdminLayout = () => {
     console.log(value);
   };
   const { data, isLoading } = useGetAmdinProfile();
-  console.log(data);
+
   if (isLoading) return <LoadingPage />;
   const path = useLocation().pathname.split("/")[1];
   const select = path ? SelectedKeys[path] : 1;

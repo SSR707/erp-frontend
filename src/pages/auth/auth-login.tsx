@@ -64,6 +64,7 @@ const AuthLogin = () => {
           style={{
             padding: "35px 35px 25px 35px",
             borderRadius: "20px",
+            background: "#fff",
             boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
             position: "relative",
             zIndex: 102,

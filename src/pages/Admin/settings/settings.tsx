@@ -10,10 +10,12 @@ import dayjs from "dayjs";
 import LoadingSpinner from "@/components/CustomSpin/spin";
 import ConfirmPassword from "./components/ProfileUpdatePasswordModal";
 import { useState } from "react";
+import ProfileUpdateModal from "./components/ProfileUpdateModel";
 
 const Settings = () => {
   const { data, isLoading } = useGetAmdinProfile();
   const [modal1Open, setModal1Open] = useState(false);
+  const [modal2Open, setModal2Open] = useState(false);
   return (
     <>
       {" "}
@@ -40,6 +42,7 @@ const Settings = () => {
         </Title>
         <Row style={{ gap: "15px", alignItems: "center" }}>
           <Button
+            onClick={() => setModal2Open(true)}
             style={{
               display: "flex",
               gap: "10px",
@@ -315,6 +318,11 @@ const Settings = () => {
           <ConfirmPassword
             isOpen={modal1Open}
             setIsOpen={() => setModal1Open(false)}
+          />
+          <ProfileUpdateModal
+            id={data?.data?.user_id}
+            isOpen={modal2Open}
+            setIsOpen={() => setModal2Open(false)}
           />
         </Col>
       )}
