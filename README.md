@@ -1,54 +1,144 @@
-# React + TypeScript + Vite
+# 🎓 ERP LMS for Educational Center
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern ERP + LMS system designed to manage educational center operations — including students, teachers, courses, payments, and group management — in one unified platform.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Demo
 
-## Expanding the ESLint configuration
+🚀 [https://erp.web-code.uz/courses](https://erp.web-code.uz/courses)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Use test login to access the system.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+| 🔐 Login  | 🔑 Password   |
+|----------|---------------|
+| Admin01  | Admin01!A     |
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 👤 Access Information
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+> 🧪 Test Admin Login
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+
+---
+
+## 🚀 Features
+
+### 📊 Dashboard
+- Overview of statistics: income, expenses, total students & teachers
+- Filtered charts and summary data
+
+### 👨‍🎓 Students
+- List of all students with latest payment status
+- Filter & search functionality
+- Add new student
+- Student details:
+  - Full profile
+  - Assigned groups
+  - Payment history and amount tracking
+  - Edit or delete profile
+
+### 👨‍🏫 Teachers
+- List of all teachers with filters & search
+- Add new teacher
+- Teacher details:
+  - Full profile
+  - Assigned groups
+  - Salary tracking
+  - Edit or delete profile
+
+### 👥 Groups
+- View and create groups
+- Filter & search groups
+- Group details:
+  - Students and teachers assigned to the group
+  - Edit or delete group
+  - Assign students to groups
+
+### 📚 Courses
+- List, create, filter, and search courses
+- Course details:
+  - Linked groups
+  - Edit or delete course
+
+### 🙍‍♂️ Admin Profile
+- View and edit profile information
+- Change password
+
+---
+
+## 🛠️ Technologies Used
+
+- ⚛️ React (with Vite)
+- 🟨 TypeScript
+- 🎨 TailwindCSS
+- 🧩 **Ant Design** (UI Components)
+- 🍃 Zustand (for state management)
+- 🔐 Axios (API integration)
+- 🌐 REST API
+
+Backend API (NestJS): [https://github.com/SSR707/lms-backend](https://github.com/SSR707/lms-backend)
+
+---
+
+## 📦 Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/SSR707/lms-frontend
+
+# 2. Navigate to the project directory
+cd lms-frontend
+
+# 3. Install dependencies
+npm install
+
+# 4. Set up environment variables
+# Create a .env file and add the following:
+VITE_API_URL=http://13.233.2.40:4000/api/v1
+VITE_DEV_URL=http://localhost:4000/api/v1
+
+# 5. Start the development server
+npm run dev
+
+## 🛡️ Roles & Access
+
+Currently available for:
+
+- 👨‍💼 **Admins**
+
+Planned for future releases:
+
+- 🧑‍🎓 **Students**
+- 👩‍🏫 **Teachers**
+
+---
+
+## 📈 Roadmap
+
+- ✅ Admin Dashboard
+- ✅ Student & Teacher Management
+- ✅ Course & Group Handling
+- ✅ Payment and Salary Tracking
+- ⏳ Role-based access for Teachers & Students
+- ⏳ SMS/Email notifications
+- ⏳ Advanced analytics and export tools
+
+---
+
+## 🤝 Contribution
+
+Contributions are welcome!  
+Feel free to **fork** this repository and submit **pull requests**.
+
+We appreciate community feedback and support.  
+Stay tuned for future updates and new feature modules! 🚀
+
+---
+
+## 🧑‍💻 Author
+
+Built and maintained by [**SSR707**](https://github.com/SSR707)  
+📧 Contact: _Coming soon..._
+
+---
+
