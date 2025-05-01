@@ -145,6 +145,6 @@ Stay tuned for future updates and new feature modules! 🚀
 ## 🧑‍💻 Author
 
 Built and maintained by [**SSR707**](https://github.com/SSR707)  
-📧 Contact: _Coming soon..._
+📧 Contact: samandarshavkatov07@gmail.com
 
 ---
