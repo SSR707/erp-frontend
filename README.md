@@ -133,10 +133,6 @@ Planned for future releases:
 ---
 
 ## 🤝 Contribution
-
-Contributions are welcome!  
-Feel free to **fork** this repository and submit **pull requests**.
-
 We appreciate community feedback and support.  
 Stay tuned for future updates and new feature modules! 🚀
 
